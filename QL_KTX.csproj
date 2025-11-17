@@ -156,7 +156,6 @@
     <EmbeddedResource Include="UI\UCViPham.resx">
       <DependentUpon>UCViPham.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="bin\Debug\QL_KTX.exe.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -171,18 +170,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Release\" />
     <Folder Include="BLL\" />
     <Folder Include="DAL\" />
     <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\Images\DangNhap\Anh_Form_Login.jpg" />
-    <Content Include="bin\Debug\Images\DangNhap\password.jpg" />
-    <Content Include="bin\Debug\Images\DangNhap\user.jpg" />
-    <Content Include="bin\Debug\QL_KTX.exe" />
-    <Content Include="bin\Debug\QL_KTX.pdb" />
-    <Content Include="bin\Debug\Images\TrangChu\bg_TrangChu.jpg" />
+    <Content Include="Images\DangNhap\Anh_Form_Login.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\DangNhap\password.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\DangNhap\user.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\TrangChu\bg_TrangChu.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
