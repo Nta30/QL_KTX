@@ -80,5 +80,25 @@ namespace QL_KTX.UI
         {
             LoadUserControl(new UCTraPhong());
         }
+
+        private void danhSáchNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new UCNhanVien());
+        }
+
+        private void chứcVụToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new UCChucVu());
+        }
+
+        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new UCTaiKhoan());
+        }
+
+        private void chiPhíPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new UCChiPhiPhong());
+        }
     }
 }

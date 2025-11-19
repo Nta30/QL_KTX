@@ -90,6 +90,7 @@
             this.btnDangNhap.TabIndex = 15;
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.UseVisualStyleBackColor = true;
+            this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
             // checkBoxPass
             // 
@@ -101,6 +102,7 @@
             this.checkBoxPass.TabIndex = 14;
             this.checkBoxPass.Text = "Hiện mật khẩu";
             this.checkBoxPass.UseVisualStyleBackColor = true;
+            this.checkBoxPass.CheckedChanged += new System.EventHandler(this.checkBoxPass_CheckedChanged);
             // 
             // txtMatKhau
             // 

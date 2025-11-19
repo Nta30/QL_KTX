@@ -46,6 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\SinhVienBLL.cs" />
+    <Compile Include="BLL\TaiKhoanBLL.cs" />
+    <Compile Include="DAL\DienSinhVienDAL.cs" />
+    <Compile Include="DAL\KhoaDAL.cs" />
+    <Compile Include="DAL\LopDAL.cs" />
+    <Compile Include="DAL\NguoiThanDAL.cs" />
+    <Compile Include="DAL\QueQuanDAL.cs" />
+    <Compile Include="DAL\SinhVienDAL.cs" />
+    <Compile Include="DAL\TaiKhoanDAL.cs" />
+    <Compile Include="DAL\DataProcesser.cs" />
+    <Compile Include="DTO\DienSinhVienDTO.cs" />
+    <Compile Include="DTO\KhoaDTO.cs" />
+    <Compile Include="DTO\LopDTO.cs" />
+    <Compile Include="DTO\NguoiThanDTO.cs" />
+    <Compile Include="DTO\QueQuanDTO.cs" />
+    <Compile Include="DTO\SinhVienDTO.cs" />
+    <Compile Include="DTO\TaiKhoanDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\FormDangNhap.cs">
@@ -59,6 +76,18 @@
     </Compile>
     <Compile Include="UI\FormTrangChu.Designer.cs">
       <DependentUpon>FormTrangChu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UCChiPhiPhong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UCChiPhiPhong.Designer.cs">
+      <DependentUpon>UCChiPhiPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UCChucVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UCChucVu.Designer.cs">
+      <DependentUpon>UCChucVu.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UCDSPhong.cs">
       <SubType>UserControl</SubType>
@@ -78,6 +107,12 @@
     <Compile Include="UI\UCLoaiPhong.Designer.cs">
       <DependentUpon>UCLoaiPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UCNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UCNhanVien.Designer.cs">
+      <DependentUpon>UCNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UCPhieuDangKy.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -89,6 +124,12 @@
     </Compile>
     <Compile Include="UI\UCSinhVien.Designer.cs">
       <DependentUpon>UCSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UCTaiKhoan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UCTaiKhoan.Designer.cs">
+      <DependentUpon>UCTaiKhoan.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UCThietBi.cs">
       <SubType>UserControl</SubType>
@@ -114,6 +155,7 @@
     <Compile Include="UI\UCViPham.Designer.cs">
       <DependentUpon>UCViPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Functions.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,6 +171,12 @@
     <EmbeddedResource Include="UI\FormTrangChu.resx">
       <DependentUpon>FormTrangChu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\UCChiPhiPhong.resx">
+      <DependentUpon>UCChiPhiPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UCChucVu.resx">
+      <DependentUpon>UCChucVu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\UCDSPhong.resx">
       <DependentUpon>UCDSPhong.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,11 +186,17 @@
     <EmbeddedResource Include="UI\UCLoaiPhong.resx">
       <DependentUpon>UCLoaiPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\UCNhanVien.resx">
+      <DependentUpon>UCNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\UCPhieuDangKy.resx">
       <DependentUpon>UCPhieuDangKy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UCSinhVien.resx">
       <DependentUpon>UCSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UCTaiKhoan.resx">
+      <DependentUpon>UCTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UCThietBi.resx">
       <DependentUpon>UCThietBi.cs</DependentUpon>
@@ -169,11 +223,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="DAL\" />
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Images\DangNhap\Anh_Form_Login.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -182,6 +232,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\DangNhap\user.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SinhVien\sv001.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SinhVien\sv002.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\TrangChu\bg_TrangChu.jpg">
