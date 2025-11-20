@@ -46,14 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ChiPhiPhongBLL.cs" />
     <Compile Include="BLL\PhieuDangKyBLL.cs" />
     <Compile Include="BLL\SinhVienBLL.cs" />
     <Compile Include="BLL\TaiKhoanBLL.cs" />
+    <Compile Include="BLL\TraPhongBLL.cs" />
     <Compile Include="BLL\ViPhamBLL.cs" />
+    <Compile Include="DAL\ChiPhiPhongDAL.cs" />
     <Compile Include="DAL\DienSinhVienDAL.cs" />
     <Compile Include="DAL\KhoaDAL.cs" />
     <Compile Include="DAL\LopDAL.cs" />
     <Compile Include="DAL\NguoiThanDAL.cs" />
+    <Compile Include="DAL\NhanVienDAL.cs" />
     <Compile Include="DAL\PhieuDangKyDAL.cs" />
     <Compile Include="DAL\PhongDAL.cs" />
     <Compile Include="DAL\QueQuanDAL.cs" />
@@ -61,7 +65,9 @@
     <Compile Include="DAL\TaiKhoanDAL.cs" />
     <Compile Include="DAL\DataProcesser.cs" />
     <Compile Include="DAL\ToaDAL.cs" />
+    <Compile Include="DAL\TraPhongDAL.cs" />
     <Compile Include="DAL\ViPhamDAL.cs" />
+    <Compile Include="DTO\ChiPhiPhongDTO.cs" />
     <Compile Include="DTO\DienSinhVienDTO.cs" />
     <Compile Include="DTO\KhoaDTO.cs" />
     <Compile Include="DTO\LopDTO.cs" />
@@ -70,6 +76,8 @@
     <Compile Include="DTO\QueQuanDTO.cs" />
     <Compile Include="DTO\SinhVienDTO.cs" />
     <Compile Include="DTO\TaiKhoanDTO.cs" />
+    <Compile Include="DTO\TraPhongChiTietDTO.cs" />
+    <Compile Include="DTO\TraPhongDTO.cs" />
     <Compile Include="DTO\ViPhamDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

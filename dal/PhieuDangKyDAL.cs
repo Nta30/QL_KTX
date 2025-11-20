@@ -124,5 +124,27 @@ namespace QL_KTX.DAL
             string sql = $"DELETE FROM PhieuDangKy WHERE MaPhieuDangKy = '{maPhieu}'";
             return data.WriteData(sql);
         }
+
+        public DataTable ChiTietPhieuDangKyDangO(string maSinhVien)
+        {
+            string sql = $@"
+                SELECT TOP 1
+                    PDK.*,
+                    SV.HoTen, SV.NgaySinh, 
+                    CASE WHEN SV.GioiTinh = 1 THEN N'Nam' ELSE N'Nữ' END AS GioiTinh,
+                    K.TenKhoa, L.TenLop, P.TenPhong, T.TenToa
+                FROM 
+                PhieuDangKy AS PDK
+                JOIN SinhVien AS SV ON PDK.MaSinhVien = SV.MaSinhVien
+                JOIN Phong AS P ON PDK.MaPhong = P.MaPhong
+                JOIN Toa AS T ON P.MaToa = T.MaToa
+                JOIN Lop AS L ON SV.MaLop = L.MaLop
+                JOIN Khoa AS K ON L.MaKhoa = K.MaKhoa
+                LEFT JOIN TraPhong AS TP ON PDK.MaPhieuDangKy = TP.MaPhieuDangKy
+                WHERE PDK.MaSinhVien = '{maSinhVien}' AND TP.MaTraPhong IS NULL
+                ORDER BY PDK.ThoiGianDangKy DESC
+            ";
+            return data.ReadData(sql);
+        }
     }
 }

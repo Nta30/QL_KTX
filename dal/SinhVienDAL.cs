@@ -227,5 +227,21 @@ namespace QL_KTX.DAL
 
             return ketQuaSV;
         }
+    
+
+    public DataTable SinhVienTrongPhong(string maPhong)
+        {
+            string sql = $@"
+                SELECT 
+                SV.MaSinhVien, SV.HoTen, L.TenLop
+                FROM SinhVien AS SV
+                JOIN PhieuDangKy AS PDK ON SV.MaSinhVien = PDK.MaSinhVien
+                JOIN Lop AS L ON SV.MaLop = L.MaLop
+                WHERE 
+                    PDK.MaPhong = '{maPhong}' AND 
+                    NOT EXISTS (SELECT 1 FROM TraPhong AS TP WHERE TP.MaPhieuDangKy = PDK.MaPhieuDangKy)
+            ";
+            return data.ReadData(sql);
+        }
     }
 }
