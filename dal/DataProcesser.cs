@@ -51,17 +51,29 @@ namespace QL_KTX.DAL
             return data;
         }
 
-        public void UpdateData(string sql)
+        public bool WriteData(string sql)
         {
+            int recordsAffected = 0;
             ConnectDatabase();
+            try
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = sqlConnect;
+                command.CommandText = sql;
+                recordsAffected = command.ExecuteNonQuery();
 
-            SqlCommand command = new SqlCommand();
-            command.Connection = sqlConnect;
-            command.CommandText = sql;
-            command.ExecuteNonQuery();
+                command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi thực thi lệnh SQL: " + ex.Message);
+            }
+            finally
+            {
+                DisconnectDatabase();
+            }
 
-            DisconnectDatabase();
-            command.Dispose();
+            return recordsAffected > 0;
         }
     }
 }

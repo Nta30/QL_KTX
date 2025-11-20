@@ -45,7 +45,6 @@
             this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.cbQueQuan = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnAnh = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -81,6 +80,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
+            this.btnAnh = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -149,6 +149,7 @@
             this.btnThoat.TabIndex = 14;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnIn
             // 
@@ -167,6 +168,7 @@
             this.btnLamMoi.TabIndex = 12;
             this.btnLamMoi.Text = "Làm Mới";
             this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // btnLuu
             // 
@@ -176,6 +178,7 @@
             this.btnLuu.TabIndex = 11;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnXoa
             // 
@@ -185,6 +188,7 @@
             this.btnXoa.TabIndex = 10;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -194,6 +198,7 @@
             this.btnSua.TabIndex = 9;
             this.btnSua.Text = "Chỉnh Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -237,6 +242,7 @@
             this.cbKhoa.Name = "cbKhoa";
             this.cbKhoa.Size = new System.Drawing.Size(445, 24);
             this.cbKhoa.TabIndex = 27;
+            this.cbKhoa.SelectedIndexChanged += new System.EventHandler(this.cbKhoa_SelectedIndexChanged);
             // 
             // dtpNgaySinh
             // 
@@ -268,17 +274,6 @@
             this.label15.Size = new System.Drawing.Size(30, 16);
             this.label15.TabIndex = 23;
             this.label15.Text = "Lớp";
-            // 
-            // btnAnh
-            // 
-            this.btnAnh.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAnh.Location = new System.Drawing.Point(534, 290);
-            this.btnAnh.Name = "btnAnh";
-            this.btnAnh.Size = new System.Drawing.Size(142, 55);
-            this.btnAnh.TabIndex = 21;
-            this.btnAnh.Text = "Chọn ảnh";
-            this.btnAnh.UseVisualStyleBackColor = true;
-            this.btnAnh.Visible = false;
             // 
             // label14
             // 
@@ -623,6 +618,18 @@
             this.btnTimKiem.UseVisualStyleBackColor = true;
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
+            // btnAnh
+            // 
+            this.btnAnh.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAnh.Location = new System.Drawing.Point(534, 290);
+            this.btnAnh.Name = "btnAnh";
+            this.btnAnh.Size = new System.Drawing.Size(142, 55);
+            this.btnAnh.TabIndex = 21;
+            this.btnAnh.Text = "Chọn ảnh";
+            this.btnAnh.UseVisualStyleBackColor = true;
+            this.btnAnh.Visible = false;
+            this.btnAnh.Click += new System.EventHandler(this.btnAnh_Click);
+            // 
             // UCSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -672,7 +679,6 @@
         private System.Windows.Forms.DateTimePicker dtpNgaySinh;
         private System.Windows.Forms.ComboBox cbQueQuan;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnAnh;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -702,5 +708,6 @@
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Button btnAnh;
     }
 }

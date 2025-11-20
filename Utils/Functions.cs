@@ -12,10 +12,14 @@ namespace QL_KTX.Utils
     {
         public void FillCombox(ComboBox cb, DataTable dt, string display, string value)
         {
-            DataRow row = dt.NewRow();
-            row[display] = "";
-            row[value] = "";
-            dt.Rows.InsertAt(row, 0);
+            if (dt.Rows.Count == 0) return;
+            if (dt.Rows[0][display].ToString() != "")
+            {
+                DataRow row = dt.NewRow();
+                row[display] = "";
+                row[value] = "";
+                dt.Rows.InsertAt(row, 0);
+            }
 
             cb.DataSource = dt;
             cb.DisplayMember = display;

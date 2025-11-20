@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QL_KTX.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -34,7 +35,9 @@ namespace QL_KTX.DAL
                     K.TenKhoa,
                     NT.HoTen as HoTenNguoiThan,
 	                NT.QuanHe,
-	                NT.SoDienThoai as SdtNguoiThan
+	                NT.SoDienThoai as SdtNguoiThan,
+                    P.TenPhong,
+                    T.TenToa
                 FROM 
                     SinhVien AS SV
                 LEFT JOIN Lop AS L ON SV.MaLop = L.MaLop
@@ -42,6 +45,9 @@ namespace QL_KTX.DAL
                 LEFT JOIN QueQuan AS Q ON SV.MaQue = Q.MaQue
                 LEFT JOIN DienSinhVien AS DSV ON SV.MaDienSinhVien = DSV.MaDienSinhVien
                 LEFT JOIN NguoiThan AS NT ON SV.MaSinhVien = NT.MaSinhVien
+                LEFT JOIN PhieuDangKy AS PDK ON SV.MaSinhVien = PDK.MaSinhVien
+                LEFT JOIN Phong AS P ON PDK.MaPhong = P.MaPhong
+                LEFT JOIN Toa AS T ON P.MaToa = T.MaToa
                 WHERE SV.MaSinhVien = '" + maSV + "'";
             return data.ReadData(sql);
         }
@@ -79,6 +85,147 @@ namespace QL_KTX.DAL
             }
 
             return data.ReadData(sql);
+        }
+
+        public bool ThemSinhVien(SinhVienDTO sv)
+        {
+            string sql = string.Format(@"
+                INSERT INTO SinhVien (MaSinhVien, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, AnhSinhVien, MaQue, MaDienSinhVien, MaLop)
+                VALUES ('{0}', N'{1}', '{2}', {3}, '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')
+            ",
+                sv.maSinhVien,
+                sv.hoTen,
+                sv.ngaySinh.ToString("yyyy-MM-dd"),
+                (sv.gioiTinh == "Nam" ? 1 : 0),
+                sv.soDienThoai,
+                sv.email,
+                sv.anhSinhVien,
+                sv.maQue,
+                sv.maDienSinhVien,
+                sv.maLop
+            );
+
+            return data.WriteData(sql);
+        }
+
+        public bool ThemNguoiThan(string maSinhVien, string hoTen, string quanHe, string soDienThoai)
+        {
+            if (string.IsNullOrEmpty(hoTen))
+            {
+                return true;
+            }
+            string sql = string.Format(@"
+                INSERT INTO NguoiThan (HoTen, QuanHe, SoDienThoai, MaSinhVien)
+                VALUES (N'{0}', N'{1}', '{2}', '{3}')
+            ",
+                hoTen,
+                quanHe,
+                soDienThoai,
+                maSinhVien
+            );
+            return data.WriteData(sql);
+        }
+
+        public bool SuaSinhVien(SinhVienDTO sv)
+        {
+            string sql = string.Format(@"
+                UPDATE SinhVien
+                SET 
+                    HoTen = N'{1}', 
+                    NgaySinh = '{2}', 
+                    GioiTinh = {3}, 
+                    SoDienThoai = '{4}', 
+                    Email = '{5}', 
+                    AnhSinhVien = '{6}', 
+                    MaQue = '{7}', 
+                    MaDienSinhVien = '{8}', 
+                    MaLop = '{9}'
+                WHERE MaSinhVien = '{0}'
+            ",
+                sv.maSinhVien,
+                sv.hoTen,
+                sv.ngaySinh.ToString("yyyy-MM-dd"),
+                (sv.gioiTinh == "Nam" ? 1 : 0),
+                sv.soDienThoai,
+                sv.email,
+                sv.anhSinhVien,
+                sv.maQue,
+                sv.maDienSinhVien,
+                sv.maLop
+            );
+
+            return data.WriteData(sql);
+        }
+
+        public bool CapNhatNguoiThan(string maSinhVien, string hoTen, string quanHe, string soDienThoai)
+        {
+            if (string.IsNullOrEmpty(hoTen))
+            {
+
+                return true;
+            }
+
+            string checkSql = "SELECT COUNT(*) FROM NguoiThan WHERE MaSinhVien = '" + maSinhVien + "'";
+
+            DataTable dt = data.ReadData(checkSql);
+
+            string sql;
+            sql = string.Format(@"
+                    UPDATE NguoiThan
+                    SET 
+                        HoTen = N'{0}', 
+                        QuanHe = N'{1}', 
+                        SoDienThoai = '{2}'
+                    WHERE MaSinhVien = '{3}'
+                ",
+                hoTen,
+                quanHe,
+                soDienThoai,
+                maSinhVien
+            );
+
+            return data.WriteData(sql);
+        }
+
+        public bool XoaNguoiThan(string maSinhVien)
+        {
+            string sql = "DELETE FROM NguoiThan WHERE MaSinhVien = '" + maSinhVien + "'";
+            return data.WriteData(sql);
+        }
+
+        public bool KiemTraRangBuoc(string maSinhVien)
+        {
+            string sqlPhieuDK = $"SELECT 1 FROM PhieuDangKy WHERE MaSinhVien = '{maSinhVien}'";
+            DataTable dtPhieuDK = data.ReadData(sqlPhieuDK);
+
+            if (dtPhieuDK.Rows.Count > 0)
+            {
+                return true;
+            }
+            string sqlViPham = $"SELECT 1 FROM ViPham WHERE MaSinhVien = '{maSinhVien}'";
+            DataTable dtViPham = data.ReadData(sqlViPham);
+
+            if (dtViPham.Rows.Count > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool XoaSinhVien(string maSinhVien)
+        {
+            if (KiemTraRangBuoc(maSinhVien))
+            {
+                return false;
+            }
+
+            XoaNguoiThan(maSinhVien);
+
+            string sql = "DELETE FROM SinhVien WHERE MaSinhVien = '" + maSinhVien + "'";
+            bool ketQuaSV = data.WriteData(sql);
+
+            return ketQuaSV;
         }
     }
 }

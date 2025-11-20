@@ -15,6 +15,9 @@ namespace QL_KTX.DTO
         public string soDienThoai { get; set; }
         public string email { get; set; }
         public string anhSinhVien { get; set; }
+        public string maQue { get; set; }
+        public string maDienSinhVien { get; set; }
+        public string maLop { get; set; }
         public string tenQue { get; set; }
         public string tenDienSinhVien { get; set; }
         public string tenLop { get; set; }
@@ -22,5 +25,7 @@ namespace QL_KTX.DTO
         public string hoTenNguoiThan { get; set; }
         public string quanHe { get; set; }
         public string soDienThoaiNguoiThan { get; set; }
+        public string tenToa { get; set; }
+        public string tenPhong { get; set; }
     }
 }

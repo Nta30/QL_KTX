@@ -18,7 +18,6 @@ namespace QL_KTX.BLL
         KhoaDAL khoaDAL = new KhoaDAL();
         LopDAL lopDAL = new LopDAL();
         SinhVienDAL sinhVienDAL = new SinhVienDAL();
-        NguoiThanDAL nguoiThanDAL = new NguoiThanDAL();
 
         public DataTable TatCaDienSinhVien()
         {
@@ -48,6 +47,7 @@ namespace QL_KTX.BLL
         public SinhVienDTO ChiTietSinhVien(string maSinhVien)
         {
             DataTable data = sinhVienDAL.TimTheoMaSV(maSinhVien);
+            if (data.Rows.Count == 0) return null;
             DataRow row = data.Rows[0];
             SinhVienDTO sv = new SinhVienDTO
             {
@@ -64,10 +64,54 @@ namespace QL_KTX.BLL
                 tenKhoa = row["TenKhoa"].ToString(),
                 hoTenNguoiThan = row["HoTenNguoiThan"].ToString(),
                 quanHe = row["QuanHe"].ToString(),
-                soDienThoaiNguoiThan = row["SdtNguoiThan"].ToString()
+                soDienThoaiNguoiThan = row["SdtNguoiThan"].ToString(),
+                tenPhong = row["TenPhong"].ToString(),
+                tenToa = row["TenToa"].ToString()
             };
 
             return sv;
+        }
+
+        public bool ThemSinhVien(SinhVienDTO sv)
+        {
+            bool ketQuaSV = sinhVienDAL.ThemSinhVien(sv);
+
+            bool ketQuaNT = true;
+            if (!string.IsNullOrEmpty(sv.hoTenNguoiThan))
+            {
+                ketQuaNT = sinhVienDAL.ThemNguoiThan(
+                    sv.maSinhVien,
+                    sv.hoTenNguoiThan,
+                    sv.quanHe,
+                    sv.soDienThoaiNguoiThan
+                );
+            }
+
+            return ketQuaSV && ketQuaNT;
+        }
+
+        public bool SuaSinhVien(SinhVienDTO sv)
+        {
+            bool ketQuaSV = sinhVienDAL.SuaSinhVien(sv);
+
+            bool ketQuaNT = sinhVienDAL.CapNhatNguoiThan(
+                sv.maSinhVien,
+                sv.hoTenNguoiThan,
+                sv.quanHe,
+                sv.soDienThoaiNguoiThan
+            );
+
+            return ketQuaSV && ketQuaNT;
+        }
+
+        public bool KiemTraRangBuoc(string maSinhVien)
+        {
+            return sinhVienDAL.KiemTraRangBuoc(maSinhVien);
+        }
+
+        public bool XoaSinhVien(string maSinhVien)
+        {
+            return sinhVienDAL.XoaSinhVien(maSinhVien);
         }
     }
 }
