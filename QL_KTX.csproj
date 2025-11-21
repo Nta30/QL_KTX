@@ -52,6 +52,7 @@
     <Compile Include="BLL\PhieuDangKyBLL.cs" />
     <Compile Include="BLL\SinhVienBLL.cs" />
     <Compile Include="BLL\TaiKhoanBLL.cs" />
+    <Compile Include="BLL\ToaBLL.cs" />
     <Compile Include="BLL\TraPhongBLL.cs" />
     <Compile Include="BLL\ViPhamBLL.cs" />
     <Compile Include="DAL\ChiPhiPhongDAL.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="DTO\QueQuanDTO.cs" />
     <Compile Include="DTO\SinhVienDTO.cs" />
     <Compile Include="DTO\TaiKhoanDTO.cs" />
+    <Compile Include="DTO\ToaDTO.cs" />
     <Compile Include="DTO\TraPhongChiTietDTO.cs" />
     <Compile Include="DTO\TraPhongDTO.cs" />
     <Compile Include="DTO\ViPhamDTO.cs" />

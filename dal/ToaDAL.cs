@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QL_KTX.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,6 +15,93 @@ namespace QL_KTX.DAL
         public DataTable TatCaToa()
         {
             string sql = "Select * from Toa";
+            return data.ReadData(sql);
+        }
+
+        public DataTable TimKiemToa(string tenToa, string soTang)
+        {
+            string sql = @"
+                SELECT 
+                    T.MaToa, 
+                    T.TenToa, 
+                    T.SoTang, 
+                    T.SoPhongToiDa,
+                    (
+                        SELECT COUNT(DISTINCT PDK.MaPhong) 
+                        FROM PhieuDangKy PDK
+                        JOIN Phong P ON PDK.MaPhong = P.MaPhong
+                        WHERE P.MaToa = T.MaToa
+                        AND NOT EXISTS (SELECT 1 FROM TraPhong TP WHERE TP.MaPhieuDangKy = PDK.MaPhieuDangKy)
+                    ) AS SoPhongHienTai
+                FROM Toa T
+                WHERE 1=1 ";
+
+            if (!string.IsNullOrEmpty(tenToa))
+                sql += $" AND T.TenToa LIKE N'%{tenToa}%' ";
+
+            if (!string.IsNullOrEmpty(soTang))
+                sql += $" AND T.SoTang = {soTang} ";
+
+            return data.ReadData(sql);
+        }
+        public string TaoMaToaMoi()
+        {
+            string sql = "SELECT TOP 1 MaToa FROM Toa ORDER BY MaToa DESC";
+            DataTable dt = data.ReadData(sql);
+            if (dt.Rows.Count > 0)
+            {
+                string maCu = dt.Rows[0]["MaToa"].ToString();
+                string so = maCu.Substring(1);
+                if (int.TryParse(so, out int stt))
+                {
+                    return "T" + (stt + 1).ToString("D2");
+                }
+            }
+            return "T01";
+        }
+
+        public bool ThemToa(ToaDTO toa)
+        {
+            string sql = string.Format("INSERT INTO Toa (MaToa, TenToa, SoTang, SoPhongToiDa) VALUES ('{0}', N'{1}', {2}, {3})",
+                toa.MaToa, toa.TenToa, toa.SoTang, toa.SoPhongToiDa);
+            return data.WriteData(sql);
+        }
+
+        public bool SuaToa(ToaDTO toa)
+        {
+            string sql = string.Format("UPDATE Toa SET TenToa = N'{1}', SoTang = {2}, SoPhongToiDa = {3} WHERE MaToa = '{0}'",
+                toa.MaToa, toa.TenToa, toa.SoTang, toa.SoPhongToiDa);
+            return data.WriteData(sql);
+        }
+
+        public bool KiemTraXoa(string maToa)
+        {
+            string sql = $"SELECT 1 FROM Phong WHERE MaToa = '{maToa}'";
+            DataTable dt = data.ReadData(sql);
+            return dt.Rows.Count > 0;
+        }
+
+        public bool XoaToa(string maToa)
+        {
+            if (KiemTraXoa(maToa)) return false;
+            string sql = $"DELETE FROM Toa WHERE MaToa = '{maToa}'";
+            return data.WriteData(sql);
+        }
+
+        public DataTable LayDsPhongTheoToa(string maToa)
+        {
+            string sql = $@"
+                SELECT 
+                    P.MaPhong, 
+                    P.TenPhong, 
+                    LP.TenLoaiPhong,
+                    LP.GiaPhong,
+                    (SELECT COUNT(*) FROM PhieuDangKy PDK 
+                     WHERE PDK.MaPhong = P.MaPhong 
+                     AND NOT EXISTS (SELECT 1 FROM TraPhong TP WHERE TP.MaPhieuDangKy = PDK.MaPhieuDangKy)) AS SoNguoiDangO
+                FROM Phong P
+                JOIN LoaiPhong LP ON P.MaLoaiPhong = LP.MaLoaiPhong
+                WHERE P.MaToa = '{maToa}'";
             return data.ReadData(sql);
         }
     }
