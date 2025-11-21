@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,7 @@
     <Compile Include="BLL\ViPhamBLL.cs" />
     <Compile Include="DAL\ChiPhiPhongDAL.cs" />
     <Compile Include="DAL\ChucVuDAL.cs" />
+    <Compile Include="DAL\DashboardDAL.cs" />
     <Compile Include="DAL\DienSinhVienDAL.cs" />
     <Compile Include="DAL\KhoaDAL.cs" />
     <Compile Include="DAL\LoaiPhongDAL.cs" />
