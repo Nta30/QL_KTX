@@ -32,7 +32,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.btnIn = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -45,6 +44,7 @@
             this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.cbQueQuan = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.btnAnh = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -80,7 +80,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
-            this.btnAnh = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -128,7 +127,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnThoat);
-            this.groupBox2.Controls.Add(this.btnIn);
             this.groupBox2.Controls.Add(this.btnLamMoi);
             this.groupBox2.Controls.Add(this.btnLuu);
             this.groupBox2.Controls.Add(this.btnXoa);
@@ -143,7 +141,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(467, 98);
+            this.btnThoat.Location = new System.Drawing.Point(497, 98);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(88, 36);
             this.btnThoat.TabIndex = 14;
@@ -151,18 +149,9 @@
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
-            // btnIn
-            // 
-            this.btnIn.Location = new System.Drawing.Point(305, 98);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(88, 36);
-            this.btnIn.TabIndex = 13;
-            this.btnIn.Text = "In";
-            this.btnIn.UseVisualStyleBackColor = true;
-            // 
             // btnLamMoi
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(129, 98);
+            this.btnLamMoi.Location = new System.Drawing.Point(322, 98);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(88, 36);
             this.btnLamMoi.TabIndex = 12;
@@ -172,7 +161,7 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(555, 34);
+            this.btnLuu.Location = new System.Drawing.Point(147, 98);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(88, 36);
             this.btnLuu.TabIndex = 11;
@@ -182,7 +171,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(388, 34);
+            this.btnXoa.Location = new System.Drawing.Point(497, 34);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(88, 36);
             this.btnXoa.TabIndex = 10;
@@ -192,7 +181,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(215, 34);
+            this.btnSua.Location = new System.Drawing.Point(322, 34);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(88, 36);
             this.btnSua.TabIndex = 9;
@@ -202,7 +191,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(50, 34);
+            this.btnThem.Location = new System.Drawing.Point(142, 34);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(88, 36);
             this.btnThem.TabIndex = 8;
@@ -274,6 +263,18 @@
             this.label15.Size = new System.Drawing.Size(30, 16);
             this.label15.TabIndex = 23;
             this.label15.Text = "Lớp";
+            // 
+            // btnAnh
+            // 
+            this.btnAnh.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAnh.Location = new System.Drawing.Point(534, 290);
+            this.btnAnh.Name = "btnAnh";
+            this.btnAnh.Size = new System.Drawing.Size(142, 55);
+            this.btnAnh.TabIndex = 21;
+            this.btnAnh.Text = "Chọn ảnh";
+            this.btnAnh.UseVisualStyleBackColor = true;
+            this.btnAnh.Visible = false;
+            this.btnAnh.Click += new System.EventHandler(this.btnAnh_Click);
             // 
             // label14
             // 
@@ -576,6 +577,7 @@
             this.btnXuatExcel.TabIndex = 6;
             this.btnXuatExcel.Text = "Xuất Excel";
             this.btnXuatExcel.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
             // 
             // label4
             // 
@@ -617,18 +619,6 @@
             this.btnTimKiem.Text = "Tìm Kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = true;
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
-            // 
-            // btnAnh
-            // 
-            this.btnAnh.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAnh.Location = new System.Drawing.Point(534, 290);
-            this.btnAnh.Name = "btnAnh";
-            this.btnAnh.Size = new System.Drawing.Size(142, 55);
-            this.btnAnh.TabIndex = 21;
-            this.btnAnh.Text = "Chọn ảnh";
-            this.btnAnh.UseVisualStyleBackColor = true;
-            this.btnAnh.Visible = false;
-            this.btnAnh.Click += new System.EventHandler(this.btnAnh_Click);
             // 
             // UCSinhVien
             // 
@@ -702,7 +692,6 @@
         private System.Windows.Forms.PictureBox pbAnh;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoa;

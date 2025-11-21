@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QL_KTX.UI
 {
@@ -70,7 +71,6 @@ namespace QL_KTX.UI
 
             btnSua.Enabled = false;
             btnLamMoi.Enabled = false;
-            btnIn.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = false;
             btnThoat.Enabled = false;
@@ -118,7 +118,6 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
-            btnIn.Enabled = true;
             btnLuu.Enabled = false;
             btnLamMoi.Enabled = false;
             btnThoat.Enabled = false;    
@@ -174,7 +173,6 @@ namespace QL_KTX.UI
             cbLop.Enabled = false;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
             btnLuu.Enabled = true;
             btnThoat.Enabled = true;
             btnLamMoi.Enabled = true;
@@ -206,7 +204,6 @@ namespace QL_KTX.UI
             EnableEdit(false);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
             btnLuu.Enabled = false;
             btnAnh.Visible = false;
             cbLeftDienSinhVien.Enabled = true;
@@ -223,7 +220,6 @@ namespace QL_KTX.UI
             EnableEdit(true);
             btnThem.Enabled = false;
             btnLamMoi.Enabled = false;
-            btnIn.Enabled = false;
             btnXoa.Enabled = false;
             btnThoat.Enabled = true;
             btnLuu.Enabled=true;
@@ -424,6 +420,11 @@ namespace QL_KTX.UI
                     MessageBox.Show("Xóa sinh viên thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            functions.XuatFileExcel(dgvSinhVien, "DANH SÁCH SINH VIÊN", "DanhSachSinhVien");
         }
     }
 }

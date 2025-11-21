@@ -1,5 +1,6 @@
 ﻿using QL_KTX.BLL;
 using QL_KTX.DTO;
+using QL_KTX.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace QL_KTX.UI
     public partial class UCDSToa : UserControl
     {
         ToaBLL toaBLL = new ToaBLL();
+        Functions functions = new Functions();
         private string trangThai = "";
         private string maToaDangChon = "";
         public UCDSToa()
@@ -74,7 +76,6 @@ namespace QL_KTX.UI
             btnLuu.Enabled = false;
             btnThoat.Enabled = false;
             btnLamMoi.Enabled = true;
-            btnIn.Enabled = true;
             EnableEdit(false);
 
             DataGridViewRow row = dgvDsToa.Rows[e.RowIndex];
@@ -118,7 +119,6 @@ namespace QL_KTX.UI
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = true;
-            btnIn.Enabled = false;
             btnLamMoi.Enabled = true;
             btnThoat.Enabled = true;
 
@@ -217,6 +217,11 @@ namespace QL_KTX.UI
             btnLuu.Enabled = false;
             btnLamMoi.Enabled = false;
             btnThoat.Enabled = false;
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            functions.XuatFileExcel(dgvDsToa, "Danh sách tòa", "DanhSachToa");
         }
     }
 }

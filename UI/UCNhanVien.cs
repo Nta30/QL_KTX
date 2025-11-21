@@ -50,7 +50,6 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnLamMoi.Enabled = false;
-            btnIn.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = false;
             btnThoat.Enabled = false;
@@ -102,7 +101,6 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
-            btnIn.Enabled = true;
             btnLuu.Enabled = false;
             btnLamMoi.Enabled = false;
             EnableEdit(false);
@@ -163,7 +161,6 @@ namespace QL_KTX.UI
             EnableEdit(true);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
 
             btnLuu.Enabled = true;
             btnThoat.Enabled = true;
@@ -184,7 +181,6 @@ namespace QL_KTX.UI
 
             btnThem.Enabled = false;
             btnLamMoi.Enabled = false;
-            btnIn.Enabled = false;
             btnXoa.Enabled = false;
             btnThoat.Enabled = true;
             btnLuu.Enabled = true;
@@ -381,13 +377,17 @@ namespace QL_KTX.UI
             EnableEdit(false);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
             btnLuu.Enabled = false;
             btnAnh.Visible = false;
 
             txtLeftMaNhanVien.Enabled = true;
             cbLeftChucVu.Enabled = true;
             cbLeftQueQuan.Enabled = true;
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            functions.XuatFileExcel(dgvDSNhanVien, "Danh sách nhân viên", "DanhSachNhanVien");
         }
     }
 }

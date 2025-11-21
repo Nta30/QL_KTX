@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QL_KTX.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -99,6 +100,17 @@ namespace QL_KTX.UI
         private void chiPhíPhòngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadUserControl(new UCChiPhiPhong());
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc muốn đăng xuất không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                FormDangNhap formDangNhap = new FormDangNhap();
+                this.Hide();
+                formDangNhap.ShowDialog();
+                this.Close();
+            }
         }
     }
 }

@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.btnIn = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -41,9 +40,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtSoPhongToiDa = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtLeftSoTang = new System.Windows.Forms.TextBox();
+            this.txtLeftTenToa = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnXuatExcel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.dgvDsToa = new System.Windows.Forms.DataGridView();
@@ -51,14 +52,12 @@
             this.txtSoTang = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtSoPhongHienTai = new System.Windows.Forms.TextBox();
+            this.txtSoPhongTrong = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvDsPhong = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtSoPhongTrong = new System.Windows.Forms.TextBox();
-            this.txtSoPhongHienTai = new System.Windows.Forms.TextBox();
             this.txtTenToa = new System.Windows.Forms.TextBox();
-            this.txtLeftTenToa = new System.Windows.Forms.TextBox();
-            this.txtLeftSoTang = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDsToa)).BeginInit();
@@ -93,7 +92,6 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel3.Controls.Add(this.btnThoat);
-            this.panel3.Controls.Add(this.btnIn);
             this.panel3.Controls.Add(this.btnLamMoi);
             this.panel3.Controls.Add(this.btnLuu);
             this.panel3.Controls.Add(this.btnXoa);
@@ -108,22 +106,13 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(15, 407);
+            this.btnThoat.Location = new System.Drawing.Point(15, 339);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(88, 36);
             this.btnThoat.TabIndex = 7;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
-            // btnIn
-            // 
-            this.btnIn.Location = new System.Drawing.Point(15, 337);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(88, 36);
-            this.btnIn.TabIndex = 5;
-            this.btnIn.Text = "In";
-            this.btnIn.UseVisualStyleBackColor = true;
             // 
             // btnLamMoi
             // 
@@ -199,7 +188,7 @@
             this.panel1.Controls.Add(this.txtLeftTenToa);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.btnXuatExcel);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnTimKiem);
             this.panel1.Controls.Add(this.dgvDsToa);
@@ -207,6 +196,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(716, 705);
             this.panel1.TabIndex = 10;
+            // 
+            // txtLeftSoTang
+            // 
+            this.txtLeftSoTang.Location = new System.Drawing.Point(104, 120);
+            this.txtLeftSoTang.Name = "txtLeftSoTang";
+            this.txtLeftSoTang.Size = new System.Drawing.Size(308, 22);
+            this.txtLeftSoTang.TabIndex = 12;
+            // 
+            // txtLeftTenToa
+            // 
+            this.txtLeftTenToa.Location = new System.Drawing.Point(104, 59);
+            this.txtLeftTenToa.Name = "txtLeftTenToa";
+            this.txtLeftTenToa.Size = new System.Drawing.Size(308, 22);
+            this.txtLeftTenToa.TabIndex = 11;
             // 
             // label4
             // 
@@ -228,14 +231,15 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Số Tầng";
             // 
-            // button8
+            // btnXuatExcel
             // 
-            this.button8.Location = new System.Drawing.Point(478, 115);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 34);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "Xuất Excel";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Location = new System.Drawing.Point(478, 115);
+            this.btnXuatExcel.Name = "btnXuatExcel";
+            this.btnXuatExcel.Size = new System.Drawing.Size(92, 34);
+            this.btnXuatExcel.TabIndex = 6;
+            this.btnXuatExcel.Text = "Xuất Excel";
+            this.btnXuatExcel.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
             // 
             // label2
             // 
@@ -320,6 +324,22 @@
             this.panel2.Size = new System.Drawing.Size(728, 705);
             this.panel2.TabIndex = 11;
             // 
+            // txtSoPhongHienTai
+            // 
+            this.txtSoPhongHienTai.Enabled = false;
+            this.txtSoPhongHienTai.Location = new System.Drawing.Point(22, 143);
+            this.txtSoPhongHienTai.Name = "txtSoPhongHienTai";
+            this.txtSoPhongHienTai.Size = new System.Drawing.Size(253, 22);
+            this.txtSoPhongHienTai.TabIndex = 40;
+            // 
+            // txtSoPhongTrong
+            // 
+            this.txtSoPhongTrong.Enabled = false;
+            this.txtSoPhongTrong.Location = new System.Drawing.Point(343, 143);
+            this.txtSoPhongTrong.Name = "txtSoPhongTrong";
+            this.txtSoPhongTrong.Size = new System.Drawing.Size(253, 22);
+            this.txtSoPhongTrong.TabIndex = 38;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -352,42 +372,12 @@
             this.label9.TabIndex = 9;
             this.label9.Text = "Số Phòng Trống";
             // 
-            // txtSoPhongTrong
-            // 
-            this.txtSoPhongTrong.Enabled = false;
-            this.txtSoPhongTrong.Location = new System.Drawing.Point(343, 143);
-            this.txtSoPhongTrong.Name = "txtSoPhongTrong";
-            this.txtSoPhongTrong.Size = new System.Drawing.Size(253, 22);
-            this.txtSoPhongTrong.TabIndex = 38;
-            // 
-            // txtSoPhongHienTai
-            // 
-            this.txtSoPhongHienTai.Enabled = false;
-            this.txtSoPhongHienTai.Location = new System.Drawing.Point(22, 143);
-            this.txtSoPhongHienTai.Name = "txtSoPhongHienTai";
-            this.txtSoPhongHienTai.Size = new System.Drawing.Size(253, 22);
-            this.txtSoPhongHienTai.TabIndex = 40;
-            // 
             // txtTenToa
             // 
             this.txtTenToa.Location = new System.Drawing.Point(22, 35);
             this.txtTenToa.Name = "txtTenToa";
             this.txtTenToa.Size = new System.Drawing.Size(253, 22);
             this.txtTenToa.TabIndex = 2;
-            // 
-            // txtLeftTenToa
-            // 
-            this.txtLeftTenToa.Location = new System.Drawing.Point(104, 59);
-            this.txtLeftTenToa.Name = "txtLeftTenToa";
-            this.txtLeftTenToa.Size = new System.Drawing.Size(308, 22);
-            this.txtLeftTenToa.TabIndex = 11;
-            // 
-            // txtLeftSoTang
-            // 
-            this.txtLeftSoTang.Location = new System.Drawing.Point(104, 120);
-            this.txtLeftSoTang.Name = "txtLeftSoTang";
-            this.txtLeftSoTang.Size = new System.Drawing.Size(308, 22);
-            this.txtLeftSoTang.TabIndex = 12;
             // 
             // UCDSToa
             // 
@@ -416,7 +406,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoa;
@@ -425,7 +414,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtSoPhongToiDa;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnXuatExcel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.DataGridView dgvDsToa;

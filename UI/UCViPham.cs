@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QL_KTX.UI
 {
@@ -52,7 +53,6 @@ namespace QL_KTX.UI
 
             btnSua.Enabled = false;
             btnLamMoi.Enabled = false;
-            btnIn.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = false;
             btnThoat.Enabled = false;
@@ -91,7 +91,6 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
-            btnIn.Enabled = true;
             btnLuu.Enabled = false;
             btnLamMoi.Enabled = false;
             btnThoat.Enabled = true;
@@ -136,7 +135,6 @@ namespace QL_KTX.UI
             EnableEdit(true);
             btnThem.Enabled = false;
             btnLamMoi.Enabled = false;
-            btnIn.Enabled = false;
             btnXoa.Enabled = false;
             btnThoat.Enabled = true;
             btnLuu.Enabled = true;
@@ -164,7 +162,6 @@ namespace QL_KTX.UI
             btnLamMoi_Click(sender, e);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
             btnLuu.Enabled = true;
             btnLamMoi.Enabled = true;
             btnThoat.Enabled = true;
@@ -213,7 +210,6 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
             btnLuu.Enabled = false;
             trangThai = "";
         }
@@ -293,6 +289,11 @@ namespace QL_KTX.UI
                     MessageBox.Show("Xóa Vi Phạm thất bại!", "Thông Báo Lỗi");
                 }
             }
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            functions.XuatFileExcel(dgvViPham, "Danh sách vi phạm", "DanhSachViPham");
         }
     }
 }

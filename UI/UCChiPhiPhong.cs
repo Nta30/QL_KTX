@@ -60,7 +60,6 @@ namespace QL_KTX.UI
             btnLuu.Enabled = false;
             btnLamMoi.Enabled = false;
             btnThoat.Enabled = false;
-            btnIn.Enabled = false;
             txtSoDien.TextChanged += TinhTien_TextChanged;
             txtTien1SoDien.TextChanged += TinhTien_TextChanged;
             txtSoNuoc.TextChanged += TinhTien_TextChanged;
@@ -110,7 +109,6 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
-            btnIn.Enabled = true;
             btnLuu.Enabled = false;
             btnLamMoi.Enabled = false;
             btnThoat.Enabled = true;
@@ -163,7 +161,6 @@ namespace QL_KTX.UI
 
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
             btnLuu.Enabled = true;
             btnLamMoi.Enabled = true;
             btnThoat.Enabled = true;
@@ -180,7 +177,6 @@ namespace QL_KTX.UI
 
             btnThem.Enabled = false;
             btnLamMoi.Enabled = false;
-            btnIn.Enabled = false;
             btnXoa.Enabled = false;
             btnThoat.Enabled = true;
             btnLuu.Enabled = true;
@@ -313,7 +309,6 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
-            btnIn.Enabled = false;
             btnLuu.Enabled = false;
             trangThai = "";
         }
@@ -361,6 +356,11 @@ namespace QL_KTX.UI
             txtTienNuoc.Text = tienNuoc.ToString("N0");
             decimal tongTien = tienDien + tienNuoc + tienPhong;
             txtTongTien.Text = tongTien.ToString("N0");
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            functions.XuatFileExcel(dgvDanhSachHoaDon, "Danh sách chi phí phòng", "DanhSachChiPhiPhong");
         }
     }
 }

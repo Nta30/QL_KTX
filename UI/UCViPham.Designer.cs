@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtpLeftNgayViPham = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.txtSoViPham = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTongTien = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtLeftHoTen = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnXuatExcel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.btnIn = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -71,7 +71,6 @@
             this.txtMaSinhVien = new System.Windows.Forms.TextBox();
             this.pbAnh = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpLeftNgayViPham = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViPham)).BeginInit();
             this.panel2.SuspendLayout();
@@ -89,7 +88,7 @@
             this.panel1.Controls.Add(this.txtTongTien);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtLeftHoTen);
-            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.btnXuatExcel);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnTimKiem);
@@ -98,6 +97,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(716, 705);
             this.panel1.TabIndex = 7;
+            // 
+            // dtpLeftNgayViPham
+            // 
+            this.dtpLeftNgayViPham.Checked = false;
+            this.dtpLeftNgayViPham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpLeftNgayViPham.Location = new System.Drawing.Point(34, 39);
+            this.dtpLeftNgayViPham.Name = "dtpLeftNgayViPham";
+            this.dtpLeftNgayViPham.Size = new System.Drawing.Size(188, 22);
+            this.dtpLeftNgayViPham.TabIndex = 41;
+            this.dtpLeftNgayViPham.ValueChanged += new System.EventHandler(this.dtpLeftNgayViPham_ValueChanged);
             // 
             // label16
             // 
@@ -152,14 +161,15 @@
             this.txtLeftHoTen.Size = new System.Drawing.Size(188, 22);
             this.txtLeftHoTen.TabIndex = 9;
             // 
-            // button8
+            // btnXuatExcel
             // 
-            this.button8.Location = new System.Drawing.Point(575, 97);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 34);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "Xuất Excel";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Location = new System.Drawing.Point(575, 97);
+            this.btnXuatExcel.Name = "btnXuatExcel";
+            this.btnXuatExcel.Size = new System.Drawing.Size(92, 34);
+            this.btnXuatExcel.TabIndex = 6;
+            this.btnXuatExcel.Text = "Xuất Excel";
+            this.btnXuatExcel.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
             // 
             // label4
             // 
@@ -248,7 +258,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnThoat);
-            this.groupBox2.Controls.Add(this.btnIn);
             this.groupBox2.Controls.Add(this.btnLamMoi);
             this.groupBox2.Controls.Add(this.btnLuu);
             this.groupBox2.Controls.Add(this.btnXoa);
@@ -263,7 +272,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(467, 98);
+            this.btnThoat.Location = new System.Drawing.Point(470, 94);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(88, 36);
             this.btnThoat.TabIndex = 14;
@@ -271,18 +280,9 @@
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
-            // btnIn
-            // 
-            this.btnIn.Location = new System.Drawing.Point(305, 98);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(88, 36);
-            this.btnIn.TabIndex = 13;
-            this.btnIn.Text = "In";
-            this.btnIn.UseVisualStyleBackColor = true;
-            // 
             // btnLamMoi
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(129, 98);
+            this.btnLamMoi.Location = new System.Drawing.Point(303, 94);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(88, 36);
             this.btnLamMoi.TabIndex = 12;
@@ -292,7 +292,7 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(555, 34);
+            this.btnLuu.Location = new System.Drawing.Point(132, 94);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(88, 36);
             this.btnLuu.TabIndex = 11;
@@ -302,7 +302,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(388, 34);
+            this.btnXoa.Location = new System.Drawing.Point(470, 32);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(88, 36);
             this.btnXoa.TabIndex = 10;
@@ -312,7 +312,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(215, 34);
+            this.btnSua.Location = new System.Drawing.Point(303, 32);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(88, 36);
             this.btnSua.TabIndex = 9;
@@ -322,7 +322,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(50, 34);
+            this.btnThem.Location = new System.Drawing.Point(132, 32);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(88, 36);
             this.btnThem.TabIndex = 8;
@@ -527,16 +527,6 @@
             this.label1.Text = "Thông Tin Vi Phạm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dtpLeftNgayViPham
-            // 
-            this.dtpLeftNgayViPham.Checked = false;
-            this.dtpLeftNgayViPham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpLeftNgayViPham.Location = new System.Drawing.Point(34, 39);
-            this.dtpLeftNgayViPham.Name = "dtpLeftNgayViPham";
-            this.dtpLeftNgayViPham.Size = new System.Drawing.Size(188, 22);
-            this.dtpLeftNgayViPham.TabIndex = 41;
-            this.dtpLeftNgayViPham.ValueChanged += new System.EventHandler(this.dtpLeftNgayViPham_ValueChanged);
-            // 
             // UCViPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -562,7 +552,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnXuatExcel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnTimKiem;
@@ -598,7 +588,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoa;

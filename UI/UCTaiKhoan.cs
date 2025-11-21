@@ -1,5 +1,6 @@
 ﻿using QL_KTX.BLL;
 using QL_KTX.DTO;
+using QL_KTX.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace QL_KTX.UI
     {
         TaiKhoanBLL taiKhoanBLL = new TaiKhoanBLL();
         NhanVienBLL nhanVienBLL = new NhanVienBLL();
+        Functions functions = new Functions();
         private string trangThai = "";
         public UCTaiKhoan()
         {
@@ -268,6 +270,11 @@ namespace QL_KTX.UI
             btnLuu.Enabled = false;
             btnLamMoi.Enabled = false;
             btnThoat.Enabled = false;
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            functions.XuatFileExcel(dgvDSTaiKhoan, "Danh sách tài khoản", "DanhSachTaiKhoan");
         }
     }
 }

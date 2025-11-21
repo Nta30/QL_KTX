@@ -30,7 +30,6 @@
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.btnIn = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -64,9 +63,9 @@
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
             this.txtLeftMaNhanVien = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnXuatExcel = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
@@ -78,7 +77,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnThoat);
-            this.groupBox2.Controls.Add(this.btnIn);
             this.groupBox2.Controls.Add(this.btnLamMoi);
             this.groupBox2.Controls.Add(this.btnLuu);
             this.groupBox2.Controls.Add(this.btnXoa);
@@ -93,7 +91,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(467, 98);
+            this.btnThoat.Location = new System.Drawing.Point(478, 98);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(88, 36);
             this.btnThoat.TabIndex = 14;
@@ -101,18 +99,9 @@
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
-            // btnIn
-            // 
-            this.btnIn.Location = new System.Drawing.Point(305, 98);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(88, 36);
-            this.btnIn.TabIndex = 13;
-            this.btnIn.Text = "In";
-            this.btnIn.UseVisualStyleBackColor = true;
-            // 
             // btnLamMoi
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(129, 98);
+            this.btnLamMoi.Location = new System.Drawing.Point(314, 98);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(88, 36);
             this.btnLamMoi.TabIndex = 12;
@@ -122,7 +111,7 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(555, 34);
+            this.btnLuu.Location = new System.Drawing.Point(140, 98);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(88, 36);
             this.btnLuu.TabIndex = 11;
@@ -132,7 +121,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(388, 34);
+            this.btnXoa.Location = new System.Drawing.Point(478, 36);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(88, 36);
             this.btnXoa.TabIndex = 10;
@@ -142,7 +131,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(215, 34);
+            this.btnSua.Location = new System.Drawing.Point(314, 36);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(88, 36);
             this.btnSua.TabIndex = 9;
@@ -152,7 +141,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(50, 34);
+            this.btnThem.Location = new System.Drawing.Point(140, 36);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(88, 36);
             this.btnThem.TabIndex = 8;
@@ -441,13 +430,20 @@
             this.panel1.Controls.Add(this.txtLeftMaNhanVien);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.btnXuatExcel);
             this.panel1.Controls.Add(this.btnTimKiem);
             this.panel1.Controls.Add(this.dgvDSTaiKhoan);
             this.panel1.Location = new System.Drawing.Point(0, 75);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(716, 705);
             this.panel1.TabIndex = 10;
+            // 
+            // txtLeftMaNhanVien
+            // 
+            this.txtLeftMaNhanVien.Location = new System.Drawing.Point(66, 96);
+            this.txtLeftMaNhanVien.Name = "txtLeftMaNhanVien";
+            this.txtLeftMaNhanVien.Size = new System.Drawing.Size(316, 22);
+            this.txtLeftMaNhanVien.TabIndex = 34;
             // 
             // label2
             // 
@@ -459,21 +455,15 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Mã Nhân Viên";
             // 
-            // button8
+            // btnXuatExcel
             // 
-            this.button8.Location = new System.Drawing.Point(565, 93);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 34);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "Xuất Excel";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // txtLeftMaNhanVien
-            // 
-            this.txtLeftMaNhanVien.Location = new System.Drawing.Point(66, 96);
-            this.txtLeftMaNhanVien.Name = "txtLeftMaNhanVien";
-            this.txtLeftMaNhanVien.Size = new System.Drawing.Size(316, 22);
-            this.txtLeftMaNhanVien.TabIndex = 34;
+            this.btnXuatExcel.Location = new System.Drawing.Point(565, 93);
+            this.btnXuatExcel.Name = "btnXuatExcel";
+            this.btnXuatExcel.Size = new System.Drawing.Size(92, 34);
+            this.btnXuatExcel.TabIndex = 6;
+            this.btnXuatExcel.Text = "Xuất Excel";
+            this.btnXuatExcel.UseVisualStyleBackColor = true;
+            this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
             // 
             // UCTaiKhoan
             // 
@@ -503,7 +493,6 @@
 
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoa;
@@ -532,7 +521,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnXuatExcel;
         private System.Windows.Forms.TextBox txtNhaplaiMatKhau;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtMatKhau;

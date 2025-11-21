@@ -210,5 +210,10 @@ namespace QL_KTX.UI
 
             trangThai = "";
         }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            functions.XuatFileExcel(dgvDSChucVu, "Danh sách chức vụ", "DanhSachChucVu");
+        }
     }
 }
