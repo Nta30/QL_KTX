@@ -11,5 +11,6 @@ namespace QL_KTX.DTO
         public string maNhanVien { get; set; }
         public string tenDangNhap { get; set; }
         public string matKhau { get; set; }
+        public string hoTen { get; set; }
     }
 }
