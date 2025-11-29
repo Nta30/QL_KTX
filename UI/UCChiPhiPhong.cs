@@ -86,9 +86,9 @@ namespace QL_KTX.UI
         {
             string maToa = cbLeftToa.SelectedValue?.ToString();
             string maPhong = cbLeftPhong.SelectedValue?.ToString();
-            int? thang = int.TryParse(txtLeftThang.Text, out int t) ? t : (int?)null;
-            int? nam = int.TryParse(txtLeftNam.Text, out int n) ? n : (int?)null;
-            string maNhanVien = string.IsNullOrWhiteSpace(txtLeftMaNhanVien.Text)?null:txtLeftMaNhanVien.Text;
+            string thang = txtLeftThang.Text;
+            string nam = txtLeftNam.Text;
+            string maNhanVien = txtLeftMaNhanVien.Text;
 
             DataTable dsHoaDon = chiPhiPhongBLL.TimKiemHoaDon(maToa,maPhong,thang,nam,maNhanVien);
             dgvDanhSachHoaDon.DataSource = dsHoaDon;
@@ -212,7 +212,6 @@ namespace QL_KTX.UI
 
             decimal tienPhong = giaPhongHienTai * soSinhVienHienTai;
 
-            decimal tienDichVuLuuDB = tienPhong;
 
             ChiPhiPhongDTO cpp = new ChiPhiPhongDTO
             {
@@ -225,7 +224,7 @@ namespace QL_KTX.UI
                 Tien1SoNuoc = tien1Nuoc,
                 TienDien = tienDien,
                 TienNuoc = tienNuoc,
-                TienDichVu = tienDichVuLuuDB,
+                TienPhong = tienPhong,
                 NgayDong = dtpNgayDong.Value,
                 NgayHetHan = dtpNgayDong.Value.AddMonths(1).AddDays(-1),
                 MaNhanVien = cbNhanVienTao.SelectedValue.ToString()
@@ -318,7 +317,7 @@ namespace QL_KTX.UI
             if (cbTenToa.SelectedIndex > 0 && cbTenToa.SelectedValue != null)
             {
                 string maToa = cbTenToa.SelectedValue.ToString();
-                DataTable dsPhong = chiPhiPhongBLL.TatCaPhong(maToa);
+                DataTable dsPhong = chiPhiPhongBLL.LayDsPhongCoSinhVien(maToa);
                 functions.FillCombox(cbTenPhong, dsPhong, "TenPhong", "MaPhong");
             }
             else
@@ -361,6 +360,13 @@ namespace QL_KTX.UI
         private void btnXuatExcel_Click(object sender, EventArgs e)
         {
             functions.XuatFileExcel(dgvDanhSachHoaDon, "Danh sách chi phí phòng", "DanhSachChiPhiPhong");
+        }
+
+        private void btnThemExcel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            openFileDialog.Title = "Chọn file Excel để nhập liệu";
         }
     }
 }

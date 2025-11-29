@@ -125,6 +125,7 @@
             // 
             // txtMaLoaiPhong
             // 
+            this.txtMaLoaiPhong.Enabled = false;
             this.txtMaLoaiPhong.Location = new System.Drawing.Point(22, 35);
             this.txtMaLoaiPhong.Name = "txtMaLoaiPhong";
             this.txtMaLoaiPhong.Size = new System.Drawing.Size(250, 22);

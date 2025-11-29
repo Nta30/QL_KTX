@@ -14,7 +14,6 @@ namespace QL_KTX.DTO
         public int Nam { get; set; }
         public decimal TienDien { get; set; }
         public decimal TienNuoc { get; set; }
-        public decimal TienDichVu { get; set; }
         public int SoDien { get; set; }
         public decimal SoNuoc { get; set; }
         public decimal Tien1SoDien { get; set; }

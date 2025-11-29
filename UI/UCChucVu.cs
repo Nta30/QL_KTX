@@ -135,7 +135,7 @@ namespace QL_KTX.UI
                 if (chucVuBLL.XoaChucVu(maChucVu))
                 {
                     MessageBox.Show("Xóa thành công!");
-                    btnLamMoi_Click(sender, e);
+                    btnThoat_Click(sender, e);
                     LoadDataGrid("");
                 }
                 else
@@ -190,7 +190,6 @@ namespace QL_KTX.UI
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            txtMaChucVu.Text = "";
             txtTenChucVu.Text = "";
             txtSoNhanVien.Text = "";
             sgvDSNhanVien.DataSource = null;
@@ -199,6 +198,7 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            txtMaChucVu.Text = "";
             EnableEdit(false);
 
             btnThem.Enabled = true;

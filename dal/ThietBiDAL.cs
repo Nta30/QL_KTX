@@ -47,20 +47,6 @@ namespace QL_KTX.DAL
             return data.ReadData(sql);
         }
 
-        public string TaoMaMoi()
-        {
-            string sql = "SELECT TOP 1 MaThietBi FROM ThietBi ORDER BY MaThietBi DESC";
-            DataTable dt = data.ReadData(sql);
-            if (dt.Rows.Count > 0)
-            {
-                string maCu = dt.Rows[0]["MaThietBi"].ToString();
-                string so = maCu.Substring(2);
-                if (int.TryParse(so, out int stt))
-                    return "TB" + (stt + 1).ToString("D2");
-            }
-            return "TB01";
-        }
-
         public bool ThemThietBi(ThietBiDTO tb)
         {
             string sql = string.Format("INSERT INTO ThietBi (MaThietBi, TenThietBi, GiaTien) VALUES ('{0}', N'{1}', {2})",

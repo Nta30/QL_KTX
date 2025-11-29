@@ -233,7 +233,7 @@ namespace QL_KTX.UI
                     cbTrangThaiCoc.Text = "";
                     btnLuu.Enabled = false;
 
-                    if (maSinhVien.Length > 0)
+                    if (maSinhVien.Length >= 16)
                     {
                         MessageBox.Show("Sinh viên này không có Phiếu Đăng Ký đang ở hoặc MSV chưa đúng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -265,21 +265,9 @@ namespace QL_KTX.UI
 
             string maPhieuDangKy = txtMaPhieuDangKy.Text.Trim();
 
-            string maTraPhong = "";
-            if (trangThai == "THEM")
-            {
-                DataTable dsLichSu = traPhongBLL.LichSuTraPhong("", null, "");
-                int count = dsLichSu != null ? dsLichSu.Rows.Count : 0;
-                maTraPhong = "TP" + (count + 1).ToString("D3");
-            }
-            else
-            {
-                maTraPhong = dgvLichSu.CurrentRow.Cells["MaTraPhong"].Value.ToString();
-            }
-
             TraPhongDTO tp = new TraPhongDTO
             {
-                MaTraPhong = maTraPhong,
+                MaTraPhong = trangThai == "SUA" ? dgvLichSu.CurrentRow.Cells["MaTraPhong"].Value.ToString() : functions.SinhMaTuDong("TP"),
                 MaPhieuDangKy = maPhieuDangKy,
                 NgayTraPhong = dtpNgayTraPhong.Value,
                 TrangThaiCoc = cbTrangThaiCoc.Text.Trim()

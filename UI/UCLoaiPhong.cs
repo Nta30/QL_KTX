@@ -28,7 +28,6 @@ namespace QL_KTX.UI
 
         public void EnableEdit(bool enable)
         {
-            txtMaLoaiPhong.Enabled = enable;
             txtTenLoaiPhong.Enabled = enable;
             txtGiaPhong.Enabled = enable;
             txtSoNguoiToiDa.Enabled = enable;
@@ -135,6 +134,7 @@ namespace QL_KTX.UI
         {
             trangThai = "THEM";
             btnLamMoi_Click(sender, e);
+            txtMaLoaiPhong.Text = functions.SinhMaTuDong("LP");
             EnableEdit(true);
             cbThietBi.SelectedIndex = -1;
 
@@ -150,7 +150,6 @@ namespace QL_KTX.UI
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            txtMaLoaiPhong.Text = "";
             txtTenLoaiPhong.Text = "";
             txtGiaPhong.Text = "";
             txtSoNguoiToiDa.Text = "";
@@ -211,7 +210,6 @@ namespace QL_KTX.UI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMaLoaiPhong.Text)) { MessageBox.Show("Nhập mã loại phòng!"); return; }
 
             decimal gia = 0;
             if (!decimal.TryParse(txtGiaPhong.Text, out gia)) { MessageBox.Show("Giá phòng không hợp lệ!"); return; }
@@ -239,6 +237,7 @@ namespace QL_KTX.UI
             if (kq)
             {
                 MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnThoat_Click(sender, e);
                 UCLoaiPhong_Load(sender, e);
             }
             else
@@ -262,6 +261,7 @@ namespace QL_KTX.UI
                 if (bll.XoaLoaiPhong(txtMaLoaiPhong.Text))
                 {
                     MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnThoat_Click(sender, e);
                     UCLoaiPhong_Load(sender, e);
                 }
                 else MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -271,6 +271,8 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             EnableEdit(false);
+            btnLamMoi_Click(sender, e);
+            txtMaLoaiPhong.Text = "";
             trangThai = "";
             LoadDataGrid("", "", "");
             btnThem.Enabled = true;

@@ -58,6 +58,8 @@
             this.dgvDsPhong = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTenToa = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMaToa = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDsToa)).BeginInit();
@@ -69,7 +71,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(19, 69);
+            this.label13.Location = new System.Drawing.Point(340, 69);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(109, 16);
             this.label13.TabIndex = 11;
@@ -176,7 +178,7 @@
             // 
             // txtSoPhongToiDa
             // 
-            this.txtSoPhongToiDa.Location = new System.Drawing.Point(22, 88);
+            this.txtSoPhongToiDa.Location = new System.Drawing.Point(343, 88);
             this.txtSoPhongToiDa.Name = "txtSoPhongToiDa";
             this.txtSoPhongToiDa.Size = new System.Drawing.Size(253, 22);
             this.txtSoPhongToiDa.TabIndex = 10;
@@ -280,7 +282,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(340, 18);
+            this.label8.Location = new System.Drawing.Point(19, 69);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 16);
             this.label8.TabIndex = 7;
@@ -288,7 +290,7 @@
             // 
             // txtSoTang
             // 
-            this.txtSoTang.Location = new System.Drawing.Point(343, 37);
+            this.txtSoTang.Location = new System.Drawing.Point(22, 88);
             this.txtSoTang.Name = "txtSoTang";
             this.txtSoTang.Size = new System.Drawing.Size(253, 22);
             this.txtSoTang.TabIndex = 6;
@@ -297,7 +299,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(19, 16);
+            this.label6.Location = new System.Drawing.Point(340, 15);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 16);
             this.label6.TabIndex = 3;
@@ -306,6 +308,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.txtMaToa);
             this.panel2.Controls.Add(this.txtSoPhongHienTai);
             this.panel2.Controls.Add(this.txtSoPhongTrong);
             this.panel2.Controls.Add(this.label5);
@@ -374,10 +378,28 @@
             // 
             // txtTenToa
             // 
-            this.txtTenToa.Location = new System.Drawing.Point(22, 35);
+            this.txtTenToa.Location = new System.Drawing.Point(343, 34);
             this.txtTenToa.Name = "txtTenToa";
             this.txtTenToa.Size = new System.Drawing.Size(253, 22);
             this.txtTenToa.TabIndex = 2;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(19, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 16);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Mã Tòa";
+            // 
+            // txtMaToa
+            // 
+            this.txtMaToa.Enabled = false;
+            this.txtMaToa.Location = new System.Drawing.Point(22, 30);
+            this.txtMaToa.Name = "txtMaToa";
+            this.txtMaToa.Size = new System.Drawing.Size(253, 22);
+            this.txtMaToa.TabIndex = 41;
             // 
             // UCDSToa
             // 
@@ -432,5 +454,7 @@
         private System.Windows.Forms.TextBox txtLeftSoTang;
         private System.Windows.Forms.TextBox txtLeftTenToa;
         private System.Windows.Forms.TextBox txtTenToa;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtMaToa;
     }
 }

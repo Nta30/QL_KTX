@@ -289,7 +289,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(7, 80);
+            this.label13.Location = new System.Drawing.Point(19, 79);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(83, 16);
             this.label13.TabIndex = 15;
@@ -297,16 +297,16 @@
             // 
             // txtTenChucVu
             // 
-            this.txtTenChucVu.Location = new System.Drawing.Point(10, 99);
+            this.txtTenChucVu.Location = new System.Drawing.Point(22, 98);
             this.txtTenChucVu.Name = "txtTenChucVu";
-            this.txtTenChucVu.Size = new System.Drawing.Size(398, 22);
+            this.txtTenChucVu.Size = new System.Drawing.Size(386, 22);
             this.txtTenChucVu.TabIndex = 14;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(7, 27);
+            this.label6.Location = new System.Drawing.Point(19, 26);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 16);
             this.label6.TabIndex = 13;
@@ -314,9 +314,9 @@
             // 
             // txtMaChucVu
             // 
-            this.txtMaChucVu.Location = new System.Drawing.Point(10, 46);
+            this.txtMaChucVu.Location = new System.Drawing.Point(22, 45);
             this.txtMaChucVu.Name = "txtMaChucVu";
-            this.txtMaChucVu.Size = new System.Drawing.Size(398, 22);
+            this.txtMaChucVu.Size = new System.Drawing.Size(386, 22);
             this.txtMaChucVu.TabIndex = 12;
             // 
             // txtSoNhanVien

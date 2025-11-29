@@ -124,7 +124,6 @@ namespace QL_KTX.UI
             EnableEdit(false);
             if(e.RowIndex == -1)
             {
-                btnTimKiem_Click(sender, e);
                 return;
             }
             string maSinhVien = dgvSinhVien.Rows[e.RowIndex].Cells["MaSinhVien"].Value.ToString();
@@ -170,6 +169,8 @@ namespace QL_KTX.UI
 
             btnLamMoi_Click(sender, e);
             EnableEdit(true);
+            txtMaSinhVien.Text = functions.SinhMaTuDong("SV");
+            txtMaSinhVien.Enabled = false;
             cbLop.Enabled = false;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
@@ -182,7 +183,6 @@ namespace QL_KTX.UI
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            txtMaSinhVien.Text = "";
             txtHoTen.Text = "";
             dtpNgaySinh.Text = "";
             cbGioiTinh.Text = "";
@@ -201,7 +201,9 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            txtMaSinhVien.Text = "";
             EnableEdit(false);
+            btnLamMoi.Enabled = false;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = false;
@@ -217,6 +219,7 @@ namespace QL_KTX.UI
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            trangThai = "SUA";
             EnableEdit(true);
             btnThem.Enabled = false;
             btnLamMoi.Enabled = false;
@@ -235,7 +238,7 @@ namespace QL_KTX.UI
             string maSinhVien = txtMaSinhVien.Text;
             SinhVienDTO sv = sinhVienBLL.ChiTietSinhVien(maSinhVien);
             HienThiChiTietSinhVien(sv);
-            trangThai = "SUA";
+            
         }
 
         private void btnAnh_Click(object sender, EventArgs e)
@@ -375,12 +378,7 @@ namespace QL_KTX.UI
                 DataTable lop = sinhVienBLL.TatCaLop(cbKhoa.SelectedValue.ToString());
                 functions.FillCombox(cbLop, lop, "TenLop", "MaLop");
             }
-            else
-            {
-                cbLop.Enabled = false;
-                cbLop.DataSource = null;
-                cbLop.Items.Clear();
-            }
+            
         }
 
         private void btnXoa_Click(object sender, EventArgs e)

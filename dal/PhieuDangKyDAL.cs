@@ -146,5 +146,39 @@ namespace QL_KTX.DAL
             ";
             return data.ReadData(sql);
         }
+
+        public DataTable LayDsToaConTrong()
+        {
+            string sql = @"
+                SELECT DISTINCT T.MaToa, T.TenToa
+                FROM Toa T
+                JOIN Phong P ON T.MaToa = P.MaToa
+                JOIN LoaiPhong LP ON P.MaLoaiPhong = LP.MaLoaiPhong
+                WHERE (
+                    SELECT COUNT(PDK.MaPhieuDangKy)
+                    FROM PhieuDangKy PDK
+                    LEFT JOIN TraPhong TP ON PDK.MaPhieuDangKy = TP.MaPhieuDangKy
+                    WHERE PDK.MaPhong = P.MaPhong AND TP.MaTraPhong IS NULL
+                ) < LP.SoNguoiToiDa";
+
+            return data.ReadData(sql);
+        }
+
+        public DataTable LayDsPhongConTrong(string maToa)
+        {
+            string sql = $@"
+        SELECT P.MaPhong, P.TenPhong
+        FROM Phong P
+        JOIN LoaiPhong LP ON P.MaLoaiPhong = LP.MaLoaiPhong
+        WHERE P.MaToa = '{maToa}' 
+        AND (
+            SELECT COUNT(PDK.MaPhieuDangKy)
+            FROM PhieuDangKy PDK
+            LEFT JOIN TraPhong TP ON PDK.MaPhieuDangKy = TP.MaPhieuDangKy
+            WHERE PDK.MaPhong = P.MaPhong AND TP.MaTraPhong IS NULL
+        ) < LP.SoNguoiToiDa";
+
+            return data.ReadData(sql);
+        }
     }
 }

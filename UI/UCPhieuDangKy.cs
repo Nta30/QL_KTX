@@ -55,9 +55,6 @@ namespace QL_KTX.UI
             dgvDSPhieu.Columns[6].HeaderText = "Học Kỳ";
             dgvDSPhieu.Columns[7].HeaderText = "Năm Học";
 
-            DataTable dsToa = phieuDangKyBLL.TatCaToa();
-            functions.FillCombox(cbToa, dsToa, "TenToa", "MaToa");
-
             btnSua.Enabled = false;
             btnLamMoi.Enabled = false;
             btnXoa.Enabled = false;
@@ -136,15 +133,28 @@ namespace QL_KTX.UI
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            EnableEdit(true);
+            trangThai = "THEM";
+
+            DataTable dsToaConTrong = phieuDangKyBLL.LayDsToaConTrong();
+            if(dsToaConTrong.Rows.Count == 0)
+            {
+                MessageBox.Show("Không còn chỗ trong KTX!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                trangThai = "";
+                return;
+            }
+            functions.FillCombox(cbToa, dsToaConTrong, "TenToa", "MaToa");
+            cbToa.SelectedIndex = 0;
+            cbPhong.DataSource = null;
             cbPhong.Enabled = false;
+
+            EnableEdit(true);
             btnLamMoi_Click(sender, e);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = true;
             btnLamMoi.Enabled = true;
             btnThoat.Enabled = true;
-            trangThai = "THEM";
+            
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -155,9 +165,6 @@ namespace QL_KTX.UI
             cbGioiTinh.Text = "";
             cbKhoa.Text = "";
             cbLop.Text = "";
-
-            DataTable dsToa = phieuDangKyBLL.TatCaToa();
-            functions.FillCombox(cbToa, dsToa, "TenToa", "MaToa");
 
             cbPhong.Text = "";
             dtpThoiGianDangKy.Value = DateTime.Now;
@@ -174,12 +181,13 @@ namespace QL_KTX.UI
             {
                 cbPhong.Enabled = true;
                 string maToa = cbToa.SelectedValue.ToString();
-                DataTable dsPhong = phieuDangKyBLL.TatCaPhong(maToa);
+                DataTable dsPhong = phieuDangKyBLL.LayDsPhongConTrong(maToa);
                 functions.FillCombox(cbPhong, dsPhong, "TenPhong", "MaPhong");
             }
             else
             {
                 cbPhong.Enabled = false;
+                cbPhong.DataSource = null;
             }
         }
 
@@ -244,10 +252,9 @@ namespace QL_KTX.UI
                 return;
             }
             DataTable dsPhieu = dsPhieu = phieuDangKyBLL.TimKiem("", null, "");
-            string maPhieuMoi = "PDK00";
             PhieuDangKyDTO p = new PhieuDangKyDTO
             {
-                MaPhieuDangKy = trangThai=="SUA"  ?dgvDSPhieu.CurrentRow.Cells["MaPhieuDangKy"].Value.ToString() : (maPhieuMoi + (dsPhieu.Rows.Count+1)),
+                MaPhieuDangKy = trangThai=="SUA"  ?dgvDSPhieu.CurrentRow.Cells["MaPhieuDangKy"].Value.ToString() : functions.SinhMaTuDong("PDK"),
                 MaSinhVien = txtMaSinhVien.Text.Trim(),
                 MaToa = cbToa.SelectedValue.ToString(),
                 MaPhong = cbPhong.SelectedValue.ToString(),

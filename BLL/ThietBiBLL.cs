@@ -21,7 +21,6 @@ namespace QL_KTX.BLL
 
         public bool ThemThietBi(ThietBiDTO tb)
         {
-            tb.MaThietBi = dal.TaoMaMoi();
             return dal.ThemThietBi(tb);
         }
 

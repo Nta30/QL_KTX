@@ -56,7 +56,7 @@ namespace QL_KTX.BLL
                 MaTraPhong = row["MaTraPhong"].ToString(),
                 MaPhieuDangKy = row["MaPhieuDangKy"].ToString(),
                 NgayTraPhong = Convert.ToDateTime(row["NgayTraPhong"]),
-                TrangThaiCoc = Convert.ToInt32(row["TrangThaiCoc"]) == 1 ? "Đã trả" : "Trừ phí"
+                TrangThaiCoc = Convert.ToInt32(row["TrangThaiCoc"]) == 1 ? "Đã trả" : "Chưa trả"
             };
         }
 

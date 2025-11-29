@@ -11,7 +11,7 @@ namespace QL_KTX.DAL
     internal class TraPhongDAL
     {
         DataProcesser data = new DataProcesser();
-        // Trong file TraPhongDAL.cs
+
         public DataTable LichSuTraPhong(string maSinhVien, DateTime? ngayTraPhong, string trangThaiCoc)
         {
             string sql = $@"

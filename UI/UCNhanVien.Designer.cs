@@ -488,6 +488,7 @@
             // 
             // txtMaNhanVien
             // 
+            this.txtMaNhanVien.Enabled = false;
             this.txtMaNhanVien.Location = new System.Drawing.Point(14, 53);
             this.txtMaNhanVien.Name = "txtMaNhanVien";
             this.txtMaNhanVien.Size = new System.Drawing.Size(415, 22);

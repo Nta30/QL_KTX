@@ -17,7 +17,7 @@ namespace QL_KTX.BLL
         NhanVienDAL nhanVienDAL = new NhanVienDAL();
         SinhVienDAL sinhVienDAL = new SinhVienDAL();
 
-        public DataTable TimKiemHoaDon(string maToa, string maPhong, int? thang, int? nam, string maNhanVien)
+        public DataTable TimKiemHoaDon(string maToa, string maPhong, string thang, string nam, string maNhanVien)
         {
             return chiPhiPhongDAL.TimKiemHoaDon(maToa, maPhong, thang, nam, maNhanVien);
         }
@@ -28,6 +28,10 @@ namespace QL_KTX.BLL
         public DataTable TatCaPhong(string maToa)
         {
             return phongDAL.TimTheoToa(maToa);
+        }
+        public DataTable LayDsPhongCoSinhVien(string maToa)
+        {
+            return chiPhiPhongDAL.LayDsPhongCoSinhVien(maToa);
         }
         public DataTable TatCaNhanVien()
         {
@@ -53,7 +57,7 @@ namespace QL_KTX.BLL
                 Nam = Convert.ToInt32(row["Nam"]),
                 TienDien = Convert.ToDecimal(row["TienDien"]),
                 TienNuoc = Convert.ToDecimal(row["TienNuoc"]),
-                TienDichVu = row["TienDichVu"] != DBNull.Value ? Convert.ToDecimal(row["TienDichVu"]) : 0,
+                TienPhong = row["TienPhong"] != DBNull.Value ? Convert.ToDecimal(row["TienPhong"]) : 0,
                 SoDien = Convert.ToInt32(row["SoDien"]),
                 SoNuoc = Convert.ToDecimal(row["SoNuoc"]),
                 Tien1SoDien = Convert.ToDecimal(row["Tien1SoDien"]),
@@ -65,7 +69,7 @@ namespace QL_KTX.BLL
                 TenToa = row["TenToa"].ToString(),
                 HoTenNhanVien = row["HoTenNhanVien"].ToString()
             };
-            cpp.TongTien = cpp.TienDien + cpp.TienNuoc + cpp.TienDichVu;
+            cpp.TongTien = cpp.TienDien + cpp.TienNuoc + cpp.TienPhong;
             cpp.DanhSachSinhVien = chiPhiPhongDAL.SinhVienTrongPhong(maPhong);
             DataTable dtPhong = chiPhiPhongDAL.LayThongTinPhongDeTinhTien(maPhong);
             if (dtPhong.Rows.Count > 0)

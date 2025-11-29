@@ -44,21 +44,6 @@ namespace QL_KTX.DAL
 
             return data.ReadData(sql);
         }
-        public string TaoMaToaMoi()
-        {
-            string sql = "SELECT TOP 1 MaToa FROM Toa ORDER BY MaToa DESC";
-            DataTable dt = data.ReadData(sql);
-            if (dt.Rows.Count > 0)
-            {
-                string maCu = dt.Rows[0]["MaToa"].ToString();
-                string so = maCu.Substring(1);
-                if (int.TryParse(so, out int stt))
-                {
-                    return "T" + (stt + 1).ToString("D2");
-                }
-            }
-            return "T01";
-        }
 
         public bool ThemToa(ToaDTO toa)
         {

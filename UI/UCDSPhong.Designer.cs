@@ -232,6 +232,7 @@
             // 
             // txtMaPhong
             // 
+            this.txtMaPhong.Enabled = false;
             this.txtMaPhong.Location = new System.Drawing.Point(22, 33);
             this.txtMaPhong.Name = "txtMaPhong";
             this.txtMaPhong.Size = new System.Drawing.Size(205, 22);

@@ -28,6 +28,78 @@ namespace QL_KTX.Utils
             cb.ValueMember = value;
         }
 
+        public string SinhMaTuDong(string prefix)
+        {
+            string time = DateTime.Now.ToString("yyyyMMddHHmmss");
+            return prefix + time;
+        }
+
+        public DataTable DocFileExcel(string filePath)
+        {
+            DataTable dt = new DataTable();
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook workbook = null;
+            Excel.Worksheet worksheet = null;
+
+            try
+            {
+                workbook = excelApp.Workbooks.Open(filePath);
+                worksheet = (Excel.Worksheet)workbook.Sheets[1];
+                Excel.Range range = worksheet.UsedRange;
+
+                int rowCount = range.Rows.Count;
+                int colCount = range.Columns.Count;
+
+                // Đọc tiêu đề cột (Dòng 1)
+                for (int i = 1; i <= colCount; i++)
+                {
+                    dt.Columns.Add(range.Cells[1, i].Value2.ToString());
+                }
+
+                // Đọc dữ liệu (Từ dòng 2 trở đi)
+                for (int i = 2; i <= rowCount; i++)
+                {
+                    DataRow dr = dt.NewRow();
+                    for (int j = 1; j <= colCount; j++)
+                    {
+                        dr[j - 1] = range.Cells[i, j].Value2;
+                    }
+                    dt.Rows.Add(dr);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (workbook != null) workbook.Close(false);
+                if (excelApp != null) excelApp.Quit();
+                ReleaseObject(worksheet);
+                ReleaseObject(workbook);
+                ReleaseObject(excelApp);
+            }
+            return dt;
+        }
+
+        // Hàm giải phóng bộ nhớ COM (quan trọng để không bị treo Excel ngầm)
+        private void ReleaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
         public void XuatFileExcel(DataGridView dgv, string tieuDe, string tenFileMacDinh)
         {
             try

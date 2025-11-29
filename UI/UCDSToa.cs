@@ -80,7 +80,7 @@ namespace QL_KTX.UI
 
             DataGridViewRow row = dgvDsToa.Rows[e.RowIndex];
             maToaDangChon = row.Cells["MaToa"].Value.ToString();
-
+            txtMaToa.Text = row.Cells["MaToa"].Value.ToString();
             txtTenToa.Text = row.Cells["TenToa"].Value.ToString();
             txtSoTang.Text = row.Cells["SoTang"].Value.ToString();
             txtSoPhongToiDa.Text = row.Cells["SoPhongToiDa"].Value.ToString();
@@ -113,6 +113,7 @@ namespace QL_KTX.UI
         {
             trangThai = "THEM";
             btnLamMoi_Click(sender, e);
+            txtMaToa.Text = functions.SinhMaTuDong("T");
             EnableEdit(true);
 
             btnThem.Enabled = false;
@@ -134,7 +135,7 @@ namespace QL_KTX.UI
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = true;
-            btnLamMoi.Enabled = true;
+            btnLamMoi.Enabled = false;
             btnThoat.Enabled = true;
         }
 
@@ -150,12 +151,12 @@ namespace QL_KTX.UI
             {
                 if (toaBLL.XoaToa(maToaDangChon))
                 {
-                    MessageBox.Show("Xóa thành công!");
+                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UCDSToa_Load(sender, e);
                 }
                 else
                 {
-                    MessageBox.Show("Xóa thất bại!");
+                    MessageBox.Show("Xóa thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -163,14 +164,14 @@ namespace QL_KTX.UI
         private void btnLuu_Click(object sender, EventArgs e)
         {
             int soTang = 0;
-            if (!int.TryParse(txtSoTang.Text, out soTang) || soTang <= 0) { MessageBox.Show("Số tầng không hợp lệ!"); return; }
+            if (!int.TryParse(txtSoTang.Text, out soTang) || soTang <= 0) { MessageBox.Show("Số tầng không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             int soPhongMax = 0;
-            if (!int.TryParse(txtSoPhongToiDa.Text, out soPhongMax) || soPhongMax <= 0) { MessageBox.Show("Số phòng tối đa không hợp lệ!"); return; }
+            if (!int.TryParse(txtSoPhongToiDa.Text, out soPhongMax) || soPhongMax <= 0) { MessageBox.Show("Số phòng tối đa không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
             ToaDTO toa = new ToaDTO
             {
-                MaToa = maToaDangChon,
+                MaToa = txtMaToa.Text,
                 TenToa = txtTenToa.Text.Trim(),
                 SoTang = soTang,
                 SoPhongToiDa = soPhongMax
@@ -184,12 +185,13 @@ namespace QL_KTX.UI
 
             if (kq)
             {
-                MessageBox.Show("Lưu thành công!");
+                MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnThoat_Click(sender, e);
                 UCDSToa_Load(sender, e);
             }
             else
             {
-                MessageBox.Show("Lưu thất bại!");
+                MessageBox.Show("Lưu thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -207,6 +209,7 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            txtMaToa.Text = "";
             EnableEdit(false);
             trangThai = "";
             maToaDangChon = "";

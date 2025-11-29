@@ -24,7 +24,6 @@ namespace QL_KTX.BLL
 
         public bool ThemToa(ToaDTO toa)
         {
-            toa.MaToa = toaDAL.TaoMaToaMoi();
             return toaDAL.ThemToa(toa);
         }
 

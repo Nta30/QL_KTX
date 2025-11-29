@@ -26,7 +26,6 @@ namespace QL_KTX.UI
 
         private void EnableEdit(bool enable)
         {
-            txtMaPhong.Enabled = enable;
             txtTenPhong.Enabled = enable;
             cbToa.Enabled = enable;
             cbLoaiPhong.Enabled = enable;
@@ -139,6 +138,7 @@ namespace QL_KTX.UI
         {
             trangThai = "THEM";
             btnLamMoi_Click(sender, e);
+            txtMaPhong.Text = functions.SinhMaTuDong("P");
             EnableEdit(true);
 
             btnThem.Enabled = false;
@@ -191,6 +191,7 @@ namespace QL_KTX.UI
                 if (phongBLL.XoaPhong(txtMaPhong.Text))
                 {
                     MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnThoat_Click(sender, e);
                     UCDSPhong_Load(sender, e);
                 }
                 else MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -211,14 +212,14 @@ namespace QL_KTX.UI
                 txtTenPhong.Focus();
                 return;
             }
-            if (cbToa.SelectedIndex == 0)
+            if (cbToa.SelectedIndex == -1 || cbToa.SelectedIndex == 0)
             {
                 MessageBox.Show("Vui lòng chọn tòa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cbToa.Focus();
                 cbToa.DroppedDown = true;
                 return;
             }
-            if (cbLoaiPhong.SelectedIndex == 0)
+            if (cbLoaiPhong.SelectedIndex == -1 || cbLoaiPhong.SelectedIndex == 0)
             {
                 MessageBox.Show("Vui lòng chọn loại phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cbLoaiPhong.Focus();
@@ -248,6 +249,7 @@ namespace QL_KTX.UI
             if (kq)
             {
                 MessageBox.Show("Lưu dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnThoat_Click(sender, e);
                 UCDSPhong_Load(sender, e);
             }
             else
@@ -282,6 +284,8 @@ namespace QL_KTX.UI
             EnableEdit(false);
             trangThai = "";
             LoadDataGrid("", "", "");
+            btnLamMoi_Click(sender, e);
+            txtMaPhong.Text = "";
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;

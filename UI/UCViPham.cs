@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QL_KTX.UI
 {
@@ -48,7 +47,7 @@ namespace QL_KTX.UI
             dgvViPham.RowHeadersVisible = false;
 
             txtSoViPham.Text = dsViPham.Rows.Count.ToString();
-            decimal tongTien = dsViPham.AsEnumerable().Sum(r => r.Field<decimal>("TienViPham"));
+            decimal tongTien = dsViPham.AsEnumerable().Sum(r => Convert.ToDecimal(r["TienViPham"]));
             txtTongTien.Text = tongTien.ToString();
 
             btnSua.Enabled = false;
@@ -82,7 +81,7 @@ namespace QL_KTX.UI
             dgvViPham.RowHeadersVisible = false;
 
             txtSoViPham.Text = dsViPham.Rows.Count.ToString();
-            decimal tongTien = dsViPham.AsEnumerable().Sum(r => r.Field<decimal>("TienViPham"));
+            decimal tongTien = dsViPham.AsEnumerable().Sum(r => Convert.ToDecimal(r["TienViPham"]));
             txtTongTien.Text = tongTien.ToString();
         }
 
@@ -108,6 +107,7 @@ namespace QL_KTX.UI
 
         private void HienThiChiTietViPham(ViPhamDTO viPham)
         {
+            txtMaViPham.Text = viPham.maViPham;
             txtMaSinhVien.Text = viPham.maSinhVien;
             txtHoTen.Text = viPham.hoTen;
             txtSdt.Text = viPham.soDienThoai;
@@ -159,6 +159,7 @@ namespace QL_KTX.UI
         private void btnThem_Click(object sender, EventArgs e)
         {
             EnableEdit(true);
+            txtMaViPham.Text = functions.SinhMaTuDong("VP");
             btnLamMoi_Click(sender, e);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
@@ -206,6 +207,7 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            txtMaViPham.Text = "";
             EnableEdit(false);
             btnThem.Enabled = true;
             btnSua.Enabled = false;
@@ -235,10 +237,9 @@ namespace QL_KTX.UI
                 return;
             }
             DataTable viPham = viPhamBLL.TimKiem(null, "");
-            string maViPhamMoi = "VP00";
             ViPhamDTO vp = new ViPhamDTO
             {
-                maViPham = trangThai == "SUA" ? dgvViPham.CurrentRow.Cells["MaViPham"].Value.ToString() : (maViPhamMoi + (viPham.Rows.Count + 1)),
+                maViPham = txtMaViPham.Text,
                 maSinhVien = txtMaSinhVien.Text.Trim(),
                 ngayViPham = dtpNgayViPham.Value,
                 noiDungViPham = rtbNdViPham.Text.Trim(),

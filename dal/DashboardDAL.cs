@@ -26,7 +26,7 @@ namespace QL_KTX.DAL
                      WHERE P.MaPhong NOT IN (SELECT DISTINCT MaPhong FROM PhieuDangKy WHERE NOT EXISTS (SELECT 1 FROM TraPhong WHERE MaPhieuDangKy = PhieuDangKy.MaPhieuDangKy))
                     ) AS SoPhongTrong,
 
-                    (SELECT ISNULL(SUM(TienDien + TienNuoc + TienDichVu), 0) 
+                    (SELECT ISNULL(SUM(TienDien + TienNuoc + TienPhong), 0) 
                      FROM ChiPhiPhong 
                      WHERE Thang = {thang} AND Nam = {nam}) AS DoanhThuDienNuoc,
 
@@ -39,7 +39,7 @@ namespace QL_KTX.DAL
             string sql = $@"
                 SELECT 
                     Thang, 
-                    SUM(TienDien + TienNuoc + TienDichVu) as TongTien
+                    SUM(TienDien + TienNuoc + TienPhong) as TongTien
                 FROM ChiPhiPhong
                 WHERE Nam = {nam}
                 GROUP BY Thang

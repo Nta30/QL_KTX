@@ -165,10 +165,6 @@ namespace QL_KTX.DAL
                 return true;
             }
 
-            string checkSql = "SELECT COUNT(*) FROM NguoiThan WHERE MaSinhVien = '" + maSinhVien + "'";
-
-            DataTable dt = data.ReadData(checkSql);
-
             string sql;
             sql = string.Format(@"
                     UPDATE NguoiThan
@@ -237,6 +233,7 @@ namespace QL_KTX.DAL
                 FROM SinhVien AS SV
                 JOIN PhieuDangKy AS PDK ON SV.MaSinhVien = PDK.MaSinhVien
                 JOIN Lop AS L ON SV.MaLop = L.MaLop
+                JOIN Phong AS P ON PDK.MaPhong = P.MaPhong
                 WHERE 
                     PDK.MaPhong = '{maPhong}' AND 
                     NOT EXISTS (SELECT 1 FROM TraPhong AS TP WHERE TP.MaPhieuDangKy = PDK.MaPhieuDangKy)

@@ -11,12 +11,12 @@ namespace QL_KTX.DAL
     internal class ChiPhiPhongDAL
     {
         DataProcesser data = new DataProcesser();
-        public DataTable TimKiemHoaDon(string maToa, string maPhong, int? thang, int? nam, string maNhanVien)
+        public DataTable TimKiemHoaDon(string maToa, string maPhong, string thang, string nam, string maNhanVien)
         {
             string sql = $@"
                 SELECT 
                     CPP.MaPhong, P.TenPhong, T.TenToa, CPP.Thang, CPP.Nam,
-                    (CPP.TienDien + CPP.TienNuoc + CPP.TienDichVu) AS TongTien,
+                    (CPP.TienDien + CPP.TienNuoc + CPP.TienPhong) AS TongTien,
                     CPP.NgayDong, NV.HoTen AS NguoiTao
                 FROM ChiPhiPhong AS CPP
                 JOIN Phong AS P ON CPP.MaPhong = P.MaPhong
@@ -26,8 +26,8 @@ namespace QL_KTX.DAL
             ";
             if (!string.IsNullOrEmpty(maToa)) { sql += $" AND T.MaToa = '{maToa}' "; }
             if (!string.IsNullOrEmpty(maPhong)) { sql += $" AND P.MaPhong = '{maPhong}' "; }
-            if (thang.HasValue) { sql += $" AND CPP.Thang = {thang.Value} "; }
-            if (nam.HasValue) { sql += $" AND CPP.Nam = {nam.Value} "; }
+            if (!string.IsNullOrEmpty(thang)) { sql += $" AND CPP.Thang = {thang} "; }
+            if (!string.IsNullOrEmpty(nam)) { sql += $" AND CPP.Nam = {nam} "; }
             if (!string.IsNullOrEmpty(maNhanVien)) { sql += $" AND (CPP.MaNhanVien LIKE N'%{maNhanVien}%' OR NV.HoTen LIKE N'%{maNhanVien}%') "; }
 
             return data.ReadData(sql);
@@ -69,11 +69,13 @@ namespace QL_KTX.DAL
         public DataTable SinhVienTrongPhong(string maPhong)
         {
             string sql = $@"
-                SELECT SV.MaSinhVien, SV.HoTen, L.TenLop
+                SELECT SV.MaSinhVien, SV.HoTen, L.TenLop, LP.GiaPhong
                 FROM SinhVien AS SV
                 JOIN PhieuDangKy AS PDK ON SV.MaSinhVien = PDK.MaSinhVien
                 JOIN Lop AS L ON SV.MaLop = L.MaLop
                 LEFT JOIN TraPhong AS TP ON PDK.MaPhieuDangKy = TP.MaPhieuDangKy
+                JOIN Phong AS P ON PDK.MaPhong = P.MaPhong
+                JOIN LoaiPhong AS LP ON P.MaLoaiPhong = LP.MaLoaiPhong
                 WHERE PDK.MaPhong = '{maPhong}' AND TP.MaTraPhong IS NULL
             ";
             return data.ReadData(sql);
@@ -90,13 +92,13 @@ namespace QL_KTX.DAL
             string sql = $@"
                 INSERT INTO ChiPhiPhong (
                     MaPhong, Thang, Nam, 
-                    TienDien, TienNuoc, TienDichVu, 
+                    TienDien, TienNuoc, TienPhong, 
                     SoDien, SoNuoc, Tien1SoDien, Tien1SoNuoc, 
                     NgayDong, NgayHetHan, MaNhanVien
                 )
                 VALUES (
                     '{cpp.MaPhong}', {cpp.Thang}, {cpp.Nam}, 
-                    {cpp.TienDien}, {cpp.TienNuoc}, {cpp.TienDichVu}, 
+                    {cpp.TienDien}, {cpp.TienNuoc}, {cpp.TienPhong}, 
                     {cpp.SoDien}, {cpp.SoNuoc}, 
                     {cpp.Tien1SoDien}, {cpp.Tien1SoNuoc}, 
                     '{cpp.NgayDong:yyyy-MM-dd}', '{cpp.NgayHetHan:yyyy-MM-dd}',
@@ -113,7 +115,7 @@ namespace QL_KTX.DAL
                 SET 
                     TienDien = {cpp.TienDien}, 
                     TienNuoc = {cpp.TienNuoc}, 
-                    TienDichVu = {cpp.TienDichVu},
+                    TienPhong = {cpp.TienPhong},
                     SoDien = {cpp.SoDien}, 
                     SoNuoc = {cpp.SoNuoc},
                     Tien1SoDien = {cpp.Tien1SoDien}, 
@@ -130,6 +132,20 @@ namespace QL_KTX.DAL
         {
             string sql = $"DELETE FROM ChiPhiPhong WHERE MaPhong = '{maPhong}' AND Thang = {thang} AND Nam = {nam}";
             return data.WriteData(sql);
+        }
+
+        public DataTable LayDsPhongCoSinhVien(string maToa)
+        {
+            
+            string sql = $@"
+                SELECT DISTINCT P.MaPhong, P.TenPhong
+                FROM Phong P
+                JOIN PhieuDangKy PDK ON P.MaPhong = PDK.MaPhong
+                LEFT JOIN TraPhong TP ON PDK.MaPhieuDangKy = TP.MaPhieuDangKy
+                WHERE P.MaToa = '{maToa}' 
+                AND TP.MaTraPhong IS NULL
+            ";
+            return data.ReadData(sql);
         }
     }
 

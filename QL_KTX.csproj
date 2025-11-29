@@ -263,15 +263,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Images\SinhVien\" />
     <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\Images\DangNhap\Anh_Form_Login.jpg" />
     <Content Include="bin\Debug\Images\DangNhap\password.jpg" />
     <Content Include="bin\Debug\Images\DangNhap\user.jpg" />
-    <Content Include="bin\Debug\Images\SinhVien\sv001.jpg" />
-    <Content Include="bin\Debug\Images\SinhVien\sv002.jpg" />
-    <Content Include="bin\Debug\Images\SinhVien\svTest.jpg" />
     <Content Include="bin\Debug\Images\TrangChu\bg_TrangChu.jpg" />
     <Content Include="bin\Debug\QL_KTX.exe" />
     <Content Include="bin\Debug\QL_KTX.pdb" />

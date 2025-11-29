@@ -78,5 +78,15 @@ namespace QL_KTX.BLL
         {
             return phieuDangKyDAL.XoaPhieuDangKy(maPhieu);
         }
+
+        public DataTable LayDsToaConTrong()
+        {
+            return phieuDangKyDAL.LayDsToaConTrong();
+        }
+
+        public DataTable LayDsPhongConTrong(string maToa)
+        {
+            return phieuDangKyDAL.LayDsPhongConTrong(maToa);
+        }
     }
 }

@@ -81,6 +81,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtLeftThang = new System.Windows.Forms.TextBox();
             this.txtLeftNam = new System.Windows.Forms.TextBox();
+            this.btnThemExcel = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -91,6 +93,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnThemExcel);
             this.groupBox2.Controls.Add(this.btnSua);
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.btnLamMoi);
@@ -106,7 +109,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(307, 31);
+            this.btnSua.Location = new System.Drawing.Point(383, 31);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(88, 36);
             this.btnSua.TabIndex = 15;
@@ -146,7 +149,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(473, 31);
+            this.btnXoa.Location = new System.Drawing.Point(543, 31);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(88, 36);
             this.btnXoa.TabIndex = 10;
@@ -156,7 +159,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(135, 31);
+            this.btnThem.Location = new System.Drawing.Point(62, 31);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(88, 36);
             this.btnThem.TabIndex = 8;
@@ -628,6 +631,20 @@
             this.txtLeftNam.Size = new System.Drawing.Size(188, 22);
             this.txtLeftNam.TabIndex = 39;
             // 
+            // btnThemExcel
+            // 
+            this.btnThemExcel.Location = new System.Drawing.Point(222, 31);
+            this.btnThemExcel.Name = "btnThemExcel";
+            this.btnThemExcel.Size = new System.Drawing.Size(88, 36);
+            this.btnThemExcel.TabIndex = 16;
+            this.btnThemExcel.Text = "Thêm DS";
+            this.btnThemExcel.UseVisualStyleBackColor = true;
+            this.btnThemExcel.Click += new System.EventHandler(this.btnThemExcel_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
             // UCChiPhiPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -707,5 +724,7 @@
         private System.Windows.Forms.TextBox txtThang;
         private System.Windows.Forms.DateTimePicker dtpNgayDong;
         private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnThemExcel;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

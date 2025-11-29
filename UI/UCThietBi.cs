@@ -92,6 +92,7 @@ namespace QL_KTX.UI
             DataGridViewRow row = dgvDsThietBi.Rows[e.RowIndex];
             maThietBiDangChon = row.Cells["MaThietBi"].Value.ToString();
 
+            txtMaThietBi.Text = maThietBiDangChon;
             txtTenThietBi.Text = row.Cells["TenThietBi"].Value.ToString();
             txtGiaTien.Text = Convert.ToDecimal(row.Cells["GiaTien"].Value).ToString("N0");
 
@@ -125,6 +126,7 @@ namespace QL_KTX.UI
         {
             btnLamMoi_Click(sender, e);
             trangThai = "THEM";
+            txtMaThietBi.Text = functions.SinhMaTuDong("TB");
             EnableEdit(true);
 
             btnThem.Enabled = false;
@@ -163,6 +165,7 @@ namespace QL_KTX.UI
                 if (bll.XoaThietBi(maThietBiDangChon))
                 {
                     MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnThoat_Click(sender, e);
                     UCThietBi_Load(sender, e);
                 }
                 else MessageBox.Show("Xóa thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -180,7 +183,7 @@ namespace QL_KTX.UI
 
             ThietBiDTO tb = new ThietBiDTO
             {
-                MaThietBi = maThietBiDangChon,
+                MaThietBi = txtMaThietBi.Text,
                 TenThietBi = txtTenThietBi.Text.Trim(),
                 GiaTien = gia
             };
@@ -192,6 +195,7 @@ namespace QL_KTX.UI
             if (kq)
             {
                 MessageBox.Show("Lưu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnThoat_Click(sender, e);
                 UCThietBi_Load(sender, e);
             }
             else MessageBox.Show("Lưu thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -200,6 +204,8 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             EnableEdit(false);
+            btnLamMoi_Click(sender, e);
+            txtMaThietBi.Text = "";
             trangThai = "";
             maThietBiDangChon = "";
             btnThem.Enabled = true;

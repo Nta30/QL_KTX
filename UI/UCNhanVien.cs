@@ -26,7 +26,6 @@ namespace QL_KTX.UI
 
         private void EnableEdit(bool enable)
         {
-            txtMaNhanVien.Enabled = enable;
             txtHoTen.Enabled = enable;
             txtLuong.Enabled = enable;
             cbChucVu.Enabled = enable;
@@ -158,6 +157,7 @@ namespace QL_KTX.UI
         private void btnThem_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            txtMaNhanVien.Text = functions.SinhMaTuDong("NV");
             EnableEdit(true);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
@@ -286,6 +286,7 @@ namespace QL_KTX.UI
             if (ketQua)
             {
                 MessageBox.Show("Lưu dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnThoat_Click(sender, e);
                 UCNhanVien_Load(sender, e);
             }
             else
@@ -323,7 +324,6 @@ namespace QL_KTX.UI
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            txtMaNhanVien.Text = "";
             txtHoTen.Text = "";
             txtLuong.Text = "";
             txtCanCuocCongDan.Text = "";
@@ -362,6 +362,7 @@ namespace QL_KTX.UI
                 if (nhanVienBLL.XoaNhanVien(maNhanVien))
                 {
                     MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnThoat_Click(sender, e);
                     UCNhanVien_Load(sender, e);
                 }
                 else
@@ -374,6 +375,7 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            txtMaNhanVien.Text = "";
             EnableEdit(false);
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
