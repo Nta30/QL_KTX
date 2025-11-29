@@ -75,7 +75,7 @@ namespace QL_KTX.UI
             btnXoa.Enabled = true;
             btnLuu.Enabled = false;
             btnThoat.Enabled = false;
-            btnLamMoi.Enabled = true;
+            btnLamMoi.Enabled = false;
             EnableEdit(false);
 
             DataGridViewRow row = dgvDsToa.Rows[e.RowIndex];
@@ -168,6 +168,12 @@ namespace QL_KTX.UI
 
             int soPhongMax = 0;
             if (!int.TryParse(txtSoPhongToiDa.Text, out soPhongMax) || soPhongMax <= 0) { MessageBox.Show("Số phòng tối đa không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+
+            if (trangThai=="SUA" && Convert.ToInt32(txtSoPhongToiDa.Text) < Convert.ToInt32(dgvDsToa.CurrentRow.Cells["SoPhongHienTai"].Value))
+            {
+                MessageBox.Show("Số phòng tối đa không thể nhỏ hơn số đang có người ở hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             ToaDTO toa = new ToaDTO
             {

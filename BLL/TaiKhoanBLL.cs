@@ -45,5 +45,10 @@ namespace QL_KTX.BLL
         {
             return taiKhoanDAL.XoaTaiKhoan(maNhanVien);
         }
+
+        public DataTable ThongTinTaiKhoan(string tenDangNhap)
+        {
+            return taiKhoanDAL.LayThongTinTaiKhoan(tenDangNhap);
+        }
     }
 }

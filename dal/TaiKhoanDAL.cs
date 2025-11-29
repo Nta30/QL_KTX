@@ -68,5 +68,15 @@ namespace QL_KTX.DAL
             DataTable dt = data.ReadData(sql);
             return dt.Rows.Count > 0;
         }
+
+        public DataTable LayThongTinTaiKhoan(string tenDangNhap)
+        {
+            string sql = $@"
+                SELECT TK.MaNhanVien, NV.HoTen, TK.TenDangNhap, TK.MatKhau, NV.AnhNhanVien
+                FROM TaiKhoan TK
+                INNER JOIN NhanVien NV ON TK.MaNhanVien = NV.MaNhanVien
+                WHERE TK.TenDangNhap = '{tenDangNhap}'";
+            return data.ReadData(sql);
+        }
     }
 }

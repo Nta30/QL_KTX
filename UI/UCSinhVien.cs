@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -28,7 +29,6 @@ namespace QL_KTX.UI
 
         private void EnableEdit(bool enable)
         {
-            txtMaSinhVien.Enabled = enable;
             txtHoTen.Enabled = enable;
             dtpNgaySinh.Enabled = enable;
             cbGioiTinh.Enabled = enable;
@@ -59,7 +59,7 @@ namespace QL_KTX.UI
             cbGioiTinh.Items.Add("Nam");
             cbGioiTinh.Items.Add("Nữ");
 
-            DataTable dsSinhVien = sinhVienBLL.TimKiem("","","","");
+            DataTable dsSinhVien = sinhVienBLL.TimKiem("","","","","");
             dgvSinhVien.DataSource = dsSinhVien;
             dgvSinhVien.Columns[0].HeaderText = "Mã Sinh Viên";
             dgvSinhVien.Columns[1].HeaderText = "Họ Tên";
@@ -102,7 +102,8 @@ namespace QL_KTX.UI
             {
                 maLop = cbLeftLop.SelectedValue.ToString();
             }
-            DataTable dsSinhVien = sinhVienBLL.TimKiem(maDienSinhVien, maQue, maKhoa, maLop);
+            string maSinhVien = txtLeftMaSinhVien.Text.Trim();
+            DataTable dsSinhVien = sinhVienBLL.TimKiem(maDienSinhVien, maQue, maKhoa, maLop, maSinhVien);
             dgvSinhVien.DataSource = dsSinhVien;
             dgvSinhVien.Columns[0].HeaderText = "Mã Sinh Viên";
             dgvSinhVien.Columns[1].HeaderText = "Họ Tên";
@@ -280,6 +281,11 @@ namespace QL_KTX.UI
                 txtSdt.Focus();
                 return;
             }
+            if (Regex.IsMatch(txtSdt.Text, @"\D") || Regex.IsMatch(txtSdtNguoiThan.Text, @"\D"))
+            {
+                MessageBox.Show("Số Điện Thoại không hợp lệ.", "Lỗi Dữ Liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (cbGioiTinh.SelectedIndex == -1 || string.IsNullOrEmpty(cbGioiTinh.Text))
             {
@@ -364,7 +370,6 @@ namespace QL_KTX.UI
             }
             if (ketQua)
             {
-                btnTimKiem_Click(sender, e);
                 btnThoat_Click(sender, e);
                 UCSinhVien_Load(sender, e);
             }

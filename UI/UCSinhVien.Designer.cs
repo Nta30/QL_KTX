@@ -73,6 +73,8 @@
             this.cbLeftQueQuan = new System.Windows.Forms.ComboBox();
             this.cbLeftLop = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtLeftMaSinhVien = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnXuatExcel = new System.Windows.Forms.Button();
@@ -389,6 +391,7 @@
             // 
             // txtMaSinhVien
             // 
+            this.txtMaSinhVien.Enabled = false;
             this.txtMaSinhVien.Location = new System.Drawing.Point(22, 35);
             this.txtMaSinhVien.Name = "txtMaSinhVien";
             this.txtMaSinhVien.Size = new System.Drawing.Size(205, 22);
@@ -483,19 +486,20 @@
             this.cbLeftDienSinhVien.FormattingEnabled = true;
             this.cbLeftDienSinhVien.Location = new System.Drawing.Point(15, 33);
             this.cbLeftDienSinhVien.Name = "cbLeftDienSinhVien";
-            this.cbLeftDienSinhVien.Size = new System.Drawing.Size(188, 24);
+            this.cbLeftDienSinhVien.Size = new System.Drawing.Size(205, 24);
             this.cbLeftDienSinhVien.TabIndex = 1;
             // 
             // dgvSinhVien
             // 
+            this.dgvSinhVien.AllowUserToAddRows = false;
             this.dgvSinhVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSinhVien.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvSinhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSinhVien.Location = new System.Drawing.Point(15, 154);
+            this.dgvSinhVien.Location = new System.Drawing.Point(15, 183);
             this.dgvSinhVien.Name = "dgvSinhVien";
             this.dgvSinhVien.RowHeadersWidth = 51;
             this.dgvSinhVien.RowTemplate.Height = 24;
-            this.dgvSinhVien.Size = new System.Drawing.Size(686, 540);
+            this.dgvSinhVien.Size = new System.Drawing.Size(686, 511);
             this.dgvSinhVien.TabIndex = 0;
             this.dgvSinhVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSinhVien_CellClick);
             // 
@@ -517,7 +521,7 @@
             this.cbLeftQueQuan.FormattingEnabled = true;
             this.cbLeftQueQuan.Location = new System.Drawing.Point(15, 83);
             this.cbLeftQueQuan.Name = "cbLeftQueQuan";
-            this.cbLeftQueQuan.Size = new System.Drawing.Size(188, 24);
+            this.cbLeftQueQuan.Size = new System.Drawing.Size(205, 24);
             this.cbLeftQueQuan.TabIndex = 3;
             // 
             // cbLeftLop
@@ -532,6 +536,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.txtLeftMaSinhVien);
             this.panel1.Controls.Add(this.label19);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnXuatExcel);
@@ -549,11 +555,28 @@
             this.panel1.Size = new System.Drawing.Size(716, 705);
             this.panel1.TabIndex = 4;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label20.Location = new System.Drawing.Point(12, 117);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(85, 16);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "Mã Sinh Viên";
+            // 
+            // txtLeftMaSinhVien
+            // 
+            this.txtLeftMaSinhVien.Location = new System.Drawing.Point(15, 136);
+            this.txtLeftMaSinhVien.Name = "txtLeftMaSinhVien";
+            this.txtLeftMaSinhVien.Size = new System.Drawing.Size(205, 22);
+            this.txtLeftMaSinhVien.TabIndex = 11;
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label19.Location = new System.Drawing.Point(16, 135);
+            this.label19.Location = new System.Drawing.Point(12, 164);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(132, 16);
             this.label19.TabIndex = 10;
@@ -698,5 +721,7 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnAnh;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtLeftMaSinhVien;
     }
 }

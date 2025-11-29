@@ -299,6 +299,7 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            dtpLeftNgayTraPhong.CustomFormat = " ";
             EnableEdit(false);
             btnThem.Enabled = true;
             btnSua.Enabled = false;
@@ -313,6 +314,20 @@ namespace QL_KTX.UI
             string maPhieuDangKy = dgvLichSu.CurrentRow.Cells["MaPhieuDangKy"].Value.ToString();
             string maSinhVien = dgvLichSu.CurrentRow.Cells["MaSinhVien"].Value.ToString();
             string hoTen = dgvLichSu.CurrentRow.Cells["HoTen"].Value.ToString();
+            bool dangOPhongKhac = traPhongBLL.CheckSinhVienDangO(maSinhVien);
+            if (dangOPhongKhac)
+            {
+                PhieuDangKyDTO p = traPhongBLL.ChiTietPhieuDangKyDangO(maSinhVien);
+
+                MessageBox.Show(
+                    $"Sinh viên {hoTen} ({maSinhVien}) hiện đang ở phòng {p.TenPhong} (Tòa {p.TenToa}).\n\n" +
+                    "Bạn KHÔNG THỂ xóa lịch sử trả phòng cũ này, vì hệ thống không cho phép sinh viên ở 2 phòng cùng lúc.",
+                    "Cảnh báo trùng phòng",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
 
             DialogResult result = MessageBox.Show(
                 $"Bạn có chắc chắn muốn xóa lịch sử trả phòng của sinh viên {hoTen} có Mã là {maSinhVien} không? Thao tác này sẽ xóa phiếu Trả Phòng có Mã Phiếu ĐK là {maPhieuDangKy}.",

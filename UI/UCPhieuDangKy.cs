@@ -32,9 +32,8 @@ namespace QL_KTX.UI
             cbToa.Enabled = enable;
             cbPhong.Enabled = enable;
             dtpThoiGianDangKy.Enabled = enable;
-            txtHocKy.Enabled = enable;
-            txtNamHoc.Enabled = enable;
-            txtThoiHan.Enabled = enable;
+            cbHocKy.Enabled = enable;
+            cbThoiHan.Enabled = enable;
             dtpNgayVaoPhong.Enabled = enable;
             txtTienCoc.Enabled = enable;
         }
@@ -45,6 +44,12 @@ namespace QL_KTX.UI
             dtpLeftNgayDangKy.CustomFormat = " ";
             DataTable dsPhieu = phieuDangKyBLL.TimKiem("", null, "");
             dgvDSPhieu.DataSource = dsPhieu;
+            DataTable dsToaConTrong = phieuDangKyBLL.LayDsToaConTrong();
+            functions.FillCombox(cbToa, dsToaConTrong, "TenToa", "MaToa");
+            cbHocKy.Items.Add("1");
+            cbHocKy.Items.Add("2");
+            cbThoiHan.Items.Add("6");
+            cbThoiHan.Items.Add("12");
             dgvDSPhieu.RowHeadersVisible = false;
             dgvDSPhieu.Columns[0].HeaderText = "Mã Phiếu";
             dgvDSPhieu.Columns[1].HeaderText = "Mã Sinh Viên";
@@ -91,6 +96,7 @@ namespace QL_KTX.UI
 
         private void dgvDSPhieu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            trangThai = "";
             btnThem.Enabled = true;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
@@ -121,12 +127,12 @@ namespace QL_KTX.UI
             cbGioiTinh.Text = p.GioiTinh;
             cbKhoa.Text = p.TenKhoa;
             cbLop.Text = p.TenLop;
-            cbToa.Text = p.TenToa;
-            cbPhong.Text = p.TenPhong;
+            cbToa.SelectedValue = p.MaToa;
+            cbPhong.SelectedValue = p.MaPhong;
             dtpThoiGianDangKy.Value = p.ThoiGianDangKy;
-            txtHocKy.Text = p.HocKy;
+            cbHocKy.Text = p.HocKy;
             txtNamHoc.Text = p.NamHoc;
-            txtThoiHan.Text = p.ThoiHan.ToString();
+            cbThoiHan.Text = p.ThoiHan.ToString();
             dtpNgayVaoPhong.Value = p.NgayVaoPhong;
             txtTienCoc.Text = p.TienCoc.ToString();
         }
@@ -142,7 +148,7 @@ namespace QL_KTX.UI
                 trangThai = "";
                 return;
             }
-            functions.FillCombox(cbToa, dsToaConTrong, "TenToa", "MaToa");
+            txtNamHoc.Text = DateTime.Now.Year.ToString();
             cbToa.SelectedIndex = 0;
             cbPhong.DataSource = null;
             cbPhong.Enabled = false;
@@ -168,27 +174,26 @@ namespace QL_KTX.UI
 
             cbPhong.Text = "";
             dtpThoiGianDangKy.Value = DateTime.Now;
-            txtHocKy.Text = "";
-            txtNamHoc.Text = "";
-            txtThoiHan.Text = "";
+            cbHocKy.SelectedIndex = -1;
+            cbThoiHan.SelectedIndex = -1;
             dtpNgayVaoPhong.Value = DateTime.Now;
             txtTienCoc.Text = "";
         }
 
         private void cbToa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbToa.SelectedIndex > 0)
+            if(cbToa.SelectedIndex > 0 && trangThai != "")
             {
                 cbPhong.Enabled = true;
-                string maToa = cbToa.SelectedValue.ToString();
-                DataTable dsPhong = phieuDangKyBLL.LayDsPhongConTrong(maToa);
-                functions.FillCombox(cbPhong, dsPhong, "TenPhong", "MaPhong");
+                
             }
             else
             {
                 cbPhong.Enabled = false;
-                cbPhong.DataSource = null;
             }
+            string maToa = cbToa.SelectedValue.ToString();
+            DataTable dsPhong = phieuDangKyBLL.LayDsPhongConTrong(maToa);
+            functions.FillCombox(cbPhong, dsPhong, "TenPhong", "MaPhong");
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -219,7 +224,7 @@ namespace QL_KTX.UI
                 MessageBox.Show("Vui lòng chọn Phòng.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrEmpty(txtHocKy.Text.Trim()))
+            if (cbHocKy.SelectedIndex == -1)
             {
                 MessageBox.Show("Học Kỳ không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -229,7 +234,7 @@ namespace QL_KTX.UI
                 MessageBox.Show("Năm Học không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrEmpty(txtThoiHan.Text.Trim()))
+            if (cbThoiHan.SelectedIndex == -1)
             {
                 MessageBox.Show("Thời Hạn không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -239,19 +244,12 @@ namespace QL_KTX.UI
                 MessageBox.Show("Tiền Cọc không được để trống.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            int thoiHan;
-            if (!int.TryParse(txtThoiHan.Text.Trim(), out thoiHan) || thoiHan <= 0)
-            {
-                MessageBox.Show("Thời Hạn phải là số nguyên dương.", "Lỗi định dạng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             decimal tienCoc;
             if (!decimal.TryParse(txtTienCoc.Text.Trim(), out tienCoc) || tienCoc < 0)
             {
                 MessageBox.Show("Tiền Cọc phải là số và không được âm.", "Lỗi định dạng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            DataTable dsPhieu = dsPhieu = phieuDangKyBLL.TimKiem("", null, "");
             PhieuDangKyDTO p = new PhieuDangKyDTO
             {
                 MaPhieuDangKy = trangThai=="SUA"  ?dgvDSPhieu.CurrentRow.Cells["MaPhieuDangKy"].Value.ToString() : functions.SinhMaTuDong("PDK"),
@@ -259,9 +257,9 @@ namespace QL_KTX.UI
                 MaToa = cbToa.SelectedValue.ToString(),
                 MaPhong = cbPhong.SelectedValue.ToString(),
                 ThoiGianDangKy = dtpThoiGianDangKy.Value,
-                HocKy = txtHocKy.Text.Trim(),
+                HocKy = cbHocKy.Text,
                 NamHoc = txtNamHoc.Text.Trim(),
-                ThoiHan = thoiHan,
+                ThoiHan = Convert.ToInt32(cbThoiHan.Text),
                 NgayVaoPhong = dtpNgayVaoPhong.Value,
                 TienCoc = tienCoc
             };
@@ -274,12 +272,30 @@ namespace QL_KTX.UI
                     return;
                 }
                 ketQua = phieuDangKyBLL.ThemPhieuDangKy(p);
-                MessageBox.Show(ketQua ? "Thêm Phiếu Đăng Ký thành công!" : "Thêm Phiếu Đăng Ký thất bại!", "Thông Báo");
+                if (ketQua) 
+                {
+                    MessageBox.Show("Thêm Phiếu Đăng Ký thành công!" , "Thông Báo");
+                    btnThoat_Click(sender, e);
+                    UCPhieuDangKy_Load(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm Phiếu Đăng Ký thất bại!", "Thông Báo");
+                }
+
             }
             else if (trangThai == "SUA")
             {
                 ketQua = phieuDangKyBLL.SuaPhieuDangKy(p);
-                MessageBox.Show(ketQua ? "Cập nhật Phiếu Đăng Ký thành công!" : "Cập nhật Phiếu Đăng Ký thất bại!", "Thông Báo");
+                if (ketQua)
+                {
+                    MessageBox.Show("Cập nhật Phiếu Đăng Ký thành công!", "Thông Báo");
+                    btnThoat_Click(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật Phiếu Đăng Ký thất bại!", "Thông Báo");
+                }
             }
             if (ketQua)
             {
@@ -315,6 +331,7 @@ namespace QL_KTX.UI
         {
             btnLamMoi_Click(sender, e);
             EnableEdit(false);
+            txtNamHoc.Text = "";
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
@@ -341,6 +358,7 @@ namespace QL_KTX.UI
                 if (ketQua)
                 {
                     MessageBox.Show("Xóa Phiếu Đăng Ký thành công!", "Thông Báo");
+                    btnThoat_Click(sender, e);
                     UCPhieuDangKy_Load(sender, e);
                 }
                 else

@@ -233,6 +233,13 @@ namespace QL_KTX.UI
                 btnAnh.Focus();
                 return;
             }
+            DataTable checkTen = phongBLL.TimKiem(cbToa.Text.Trim(), txtTenPhong.Text.Trim(), "");
+            if(checkTen.Rows.Count > 0 && trangThai == "THEM")
+            {
+                MessageBox.Show("Phòng này đã tồn tại trong tòa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenPhong.Focus();
+                return;
+            }
             PhongDTO p = new PhongDTO
             {
                 MaPhong = txtMaPhong.Text.Trim(),

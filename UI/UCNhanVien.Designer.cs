@@ -88,6 +88,7 @@
             // 
             // dgvDSNhanVien
             // 
+            this.dgvDSNhanVien.AllowUserToAddRows = false;
             this.dgvDSNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDSNhanVien.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvDSNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

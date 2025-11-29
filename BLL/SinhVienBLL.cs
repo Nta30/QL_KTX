@@ -39,9 +39,9 @@ namespace QL_KTX.BLL
             return lopDAL.TimTheoMaKhoa(maKhoa);
         }
 
-        public DataTable TimKiem(string maDienSinhVien, string maQue, string maKhoa, string maLop)
+        public DataTable TimKiem(string maDienSinhVien, string maQue, string maKhoa, string maLop, string maSinhVien)
         {
-            return sinhVienDAL.TimKiemSinhVien(maDienSinhVien, maQue, maKhoa, maLop);
+            return sinhVienDAL.TimKiemSinhVien(maDienSinhVien, maQue, maKhoa, maLop, maSinhVien);
         }
 
         public SinhVienDTO ChiTietSinhVien(string maSinhVien)

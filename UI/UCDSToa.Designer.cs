@@ -52,14 +52,14 @@
             this.txtSoTang = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMaToa = new System.Windows.Forms.TextBox();
             this.txtSoPhongHienTai = new System.Windows.Forms.TextBox();
             this.txtSoPhongTrong = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvDsPhong = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTenToa = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtMaToa = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDsToa)).BeginInit();
@@ -266,6 +266,7 @@
             // 
             // dgvDsToa
             // 
+            this.dgvDsToa.AllowUserToAddRows = false;
             this.dgvDsToa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDsToa.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvDsToa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -328,6 +329,24 @@
             this.panel2.Size = new System.Drawing.Size(728, 705);
             this.panel2.TabIndex = 11;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(19, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 16);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Mã Tòa";
+            // 
+            // txtMaToa
+            // 
+            this.txtMaToa.Enabled = false;
+            this.txtMaToa.Location = new System.Drawing.Point(22, 30);
+            this.txtMaToa.Name = "txtMaToa";
+            this.txtMaToa.Size = new System.Drawing.Size(253, 22);
+            this.txtMaToa.TabIndex = 41;
+            // 
             // txtSoPhongHienTai
             // 
             this.txtSoPhongHienTai.Enabled = false;
@@ -356,6 +375,7 @@
             // 
             // dgvDsPhong
             // 
+            this.dgvDsPhong.AllowUserToAddRows = false;
             this.dgvDsPhong.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDsPhong.BackgroundColor = System.Drawing.Color.White;
             this.dgvDsPhong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -382,24 +402,6 @@
             this.txtTenToa.Name = "txtTenToa";
             this.txtTenToa.Size = new System.Drawing.Size(253, 22);
             this.txtTenToa.TabIndex = 2;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(19, 11);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 16);
-            this.label10.TabIndex = 42;
-            this.label10.Text = "Mã Tòa";
-            // 
-            // txtMaToa
-            // 
-            this.txtMaToa.Enabled = false;
-            this.txtMaToa.Location = new System.Drawing.Point(22, 30);
-            this.txtMaToa.Name = "txtMaToa";
-            this.txtMaToa.Size = new System.Drawing.Size(253, 22);
-            this.txtMaToa.TabIndex = 41;
             // 
             // UCDSToa
             // 

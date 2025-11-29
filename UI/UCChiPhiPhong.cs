@@ -68,7 +68,7 @@ namespace QL_KTX.UI
 
         private void cbLeftToa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbLeftToa.SelectedIndex > 0)
+            if (cbLeftToa.SelectedIndex > 0)
             {
                 cbLeftPhong.Enabled = true;
                 string maToa = cbLeftToa.SelectedValue.ToString();
@@ -90,7 +90,7 @@ namespace QL_KTX.UI
             string nam = txtLeftNam.Text;
             string maNhanVien = txtLeftMaNhanVien.Text;
 
-            DataTable dsHoaDon = chiPhiPhongBLL.TimKiemHoaDon(maToa,maPhong,thang,nam,maNhanVien);
+            DataTable dsHoaDon = chiPhiPhongBLL.TimKiemHoaDon(maToa, maPhong, thang, nam, maNhanVien);
             dgvDanhSachHoaDon.DataSource = dsHoaDon;
             dgvDanhSachHoaDon.RowHeadersVisible = false;
             dgvDanhSachHoaDon.Columns[0].HeaderText = "Mã Phòng";
@@ -101,6 +101,13 @@ namespace QL_KTX.UI
             dgvDanhSachHoaDon.Columns[5].HeaderText = "Tổng Tiền";
             dgvDanhSachHoaDon.Columns[6].HeaderText = "Ngày Đóng";
             dgvDanhSachHoaDon.Columns[7].HeaderText = "Người Lập";
+
+            decimal doanhThu = 0;
+            for (int i = 0; i < dsHoaDon.Rows.Count; i++)
+            {
+                doanhThu += Convert.ToDecimal(dsHoaDon.Rows[i]["TongTien"]);
+            }
+            txtLeftDoanhThu.Text = doanhThu.ToString("N0");
         }
 
         private void dgvDanhSachHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -185,7 +192,7 @@ namespace QL_KTX.UI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (cbTenPhong.SelectedValue == null && trangThai=="THEM")
+            if (cbTenPhong.SelectedValue == null && trangThai == "THEM")
             {
                 MessageBox.Show("Vui lòng chọn Phòng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -215,7 +222,7 @@ namespace QL_KTX.UI
 
             ChiPhiPhongDTO cpp = new ChiPhiPhongDTO
             {
-                MaPhong = trangThai == "SUA" ? dgvDanhSachHoaDon.CurrentRow.Cells["MaPhong"].Value.ToString(): cbTenPhong.SelectedValue.ToString(),
+                MaPhong = trangThai == "SUA" ? dgvDanhSachHoaDon.CurrentRow.Cells["MaPhong"].Value.ToString() : cbTenPhong.SelectedValue.ToString(),
                 Thang = thang,
                 Nam = nam,
                 SoDien = soDien,
@@ -364,9 +371,87 @@ namespace QL_KTX.UI
 
         private void btnThemExcel_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
             openFileDialog.Title = "Chọn file Excel để nhập liệu";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataTable dtExel = functions.DocFileExcel(openFileDialog.FileName);
+                    int thanhCong = 0;
+                    int thatBai = 0;
+                    string chiTietLoi = "";
+
+                    foreach (DataRow row in dtExel.Rows)
+                    {
+                        string maPhong = row["MaPhong"].ToString();
+                        try
+                        {
+                            ChiPhiPhongDTO thongTinPhong = chiPhiPhongBLL.LayThongTinTinhToan(maPhong);
+                            if (thongTinPhong.SoLuongSinhVien == 0)
+                            {
+                                thatBai++;
+                                chiTietLoi += $"- Phòng {maPhong}: Không có sinh viên ở.\n";
+                                continue;
+                            }
+
+                            int thang = Convert.ToInt32(row["Thang"]);
+                            int nam = Convert.ToInt32(row["Nam"]);
+
+                            ChiPhiPhongDTO cpp = new ChiPhiPhongDTO();
+                            cpp.MaPhong = maPhong;
+                            cpp.Thang = thang;
+                            cpp.Nam = nam;
+
+                            cpp.SoDien = Convert.ToInt32(row["SoDien"]);
+                            cpp.SoNuoc = Convert.ToDecimal(row["SoNuoc"]);
+                            cpp.Tien1SoDien = Convert.ToDecimal(row["Tien1SoDien"]);
+                            cpp.Tien1SoNuoc = Convert.ToDecimal(row["Tien1SoNuoc"]);
+                            cpp.MaNhanVien = row["MaNhanVien"].ToString();
+
+                            cpp.TienDien = cpp.SoDien * cpp.Tien1SoDien;
+                            cpp.TienNuoc = cpp.SoNuoc * cpp.Tien1SoNuoc;
+                            cpp.TienPhong = thongTinPhong.GiaPhong * thongTinPhong.SoLuongSinhVien;
+
+                            if (dtExel.Columns.Contains("NgayDong"))
+                                cpp.NgayDong = DateTime.FromOADate(Convert.ToDouble(row["NgayDong"]));
+                            else
+                                cpp.NgayDong = DateTime.Now;
+                            cpp.NgayHetHan = cpp.NgayDong.AddMonths(1).AddDays(-1);
+
+                            if (chiPhiPhongBLL.ThemChiPhiPhong(cpp))
+                            {
+                                thanhCong++;
+                            }
+                            else
+                            {
+                                thatBai++;
+                                chiTietLoi += $"- Phòng {maPhong}: Đã tồn tại hóa đơn tháng {thang}/{nam}.\n";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            thatBai++;
+                            chiTietLoi += $"- Phòng {maPhong}: Lỗi dữ liệu ({ex.Message}).\n";
+                        }
+                    }
+
+                    string thongBao = $"Hoàn tất nhập liệu!\n- Thành công: {thanhCong}\n- Thất bại: {thatBai}";
+                    if (!string.IsNullOrEmpty(chiTietLoi))
+                    {
+                        thongBao += $"\n\nChi tiết lỗi:\n{chiTietLoi}";
+                    }
+                    MessageBox.Show(thongBao, "Kết quả nhập", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    btnThoat_Click(sender, e);
+                    btnTimKiem_Click(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi đọc file Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

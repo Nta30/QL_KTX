@@ -1,4 +1,5 @@
 ﻿using QL_KTX.BLL;
+using QL_KTX.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,6 +60,11 @@ namespace QL_KTX.UI
             bool isValid = taiKhoanBLL.CheckLogin(username, password);
             if (isValid)
             {
+                DataTable thongTinTk = taiKhoanBLL.ThongTinTaiKhoan(username);
+                Session.maNhanVien = thongTinTk.Rows[0]["MaNhanVien"].ToString();
+                Session.hoTenNhanVien = thongTinTk.Rows[0]["HoTen"].ToString();
+                Session.hinhAnhNhanVien = thongTinTk.Rows[0]["AnhNhanVien"].ToString();
+
                 FormTrangChu formTrangChu = new FormTrangChu();
                 this.Hide();
                 formTrangChu.ShowDialog();

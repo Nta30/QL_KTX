@@ -54,7 +54,7 @@ namespace QL_KTX.UI
             btnLamMoi.Enabled = false;
             btnXoa.Enabled = false;
             btnLuu.Enabled = false;
-            btnThoat.Enabled = false;
+            btnThoat.Enabled = true;
         }
 
         private void dtpLeftNgayViPham_ValueChanged(object sender, EventArgs e)
@@ -83,6 +83,7 @@ namespace QL_KTX.UI
             txtSoViPham.Text = dsViPham.Rows.Count.ToString();
             decimal tongTien = dsViPham.AsEnumerable().Sum(r => Convert.ToDecimal(r["TienViPham"]));
             txtTongTien.Text = tongTien.ToString();
+            btnThoat.Enabled = true;
         }
 
         private void dgvViPham_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -97,7 +98,7 @@ namespace QL_KTX.UI
 
             if (e.RowIndex == -1)
             {
-                btnTimKiem_Click(sender, e);
+                
                 return;
             }
             string maViPham = dgvViPham.Rows[e.RowIndex].Cells["MaViPham"].Value.ToString();
@@ -172,7 +173,7 @@ namespace QL_KTX.UI
         private void txtMaSinhVien_TextChanged(object sender, EventArgs e)
         {
             string maSinhVien = txtMaSinhVien.Text;
-            if (maSinhVien.Length < 4)
+            if (maSinhVien.Length < 5)
             {
                 txtHoTen.Text = "";
                 txtSdt.Text = "";
@@ -180,6 +181,7 @@ namespace QL_KTX.UI
                 cbPhong.Text = "";
                 cbToa.Text = "";
                 txtEmail.Text = "";
+                return;
             }
             SinhVienDTO sv = sinhVienBLL.ChiTietSinhVien(maSinhVien);
             if (sv != null)
@@ -207,6 +209,7 @@ namespace QL_KTX.UI
         private void btnThoat_Click(object sender, EventArgs e)
         {
             btnLamMoi_Click(sender, e);
+            dtpLeftNgayViPham.CustomFormat = " ";
             txtMaViPham.Text = "";
             EnableEdit(false);
             btnThem.Enabled = true;

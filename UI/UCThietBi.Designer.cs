@@ -52,13 +52,13 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtMaThietBi = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtTenThietBi = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtGiaTien = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtMaThietBi = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDsThietBi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDsPhong)).BeginInit();
@@ -191,6 +191,7 @@
             // 
             // dgvDsThietBi
             // 
+            this.dgvDsThietBi.AllowUserToAddRows = false;
             this.dgvDsThietBi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDsThietBi.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvDsThietBi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -214,6 +215,7 @@
             // 
             // dgvDsPhong
             // 
+            this.dgvDsPhong.AllowUserToAddRows = false;
             this.dgvDsPhong.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDsPhong.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvDsPhong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -326,6 +328,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
             // 
+            // txtMaThietBi
+            // 
+            this.txtMaThietBi.Enabled = false;
+            this.txtMaThietBi.Location = new System.Drawing.Point(20, 47);
+            this.txtMaThietBi.Name = "txtMaThietBi";
+            this.txtMaThietBi.Size = new System.Drawing.Size(250, 22);
+            this.txtMaThietBi.TabIndex = 37;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(17, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 16);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "Mã Thiết Bị";
+            // 
             // txtTenThietBi
             // 
             this.txtTenThietBi.Location = new System.Drawing.Point(403, 47);
@@ -372,24 +392,6 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Thiết Bị";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtMaThietBi
-            // 
-            this.txtMaThietBi.Enabled = false;
-            this.txtMaThietBi.Location = new System.Drawing.Point(20, 47);
-            this.txtMaThietBi.Name = "txtMaThietBi";
-            this.txtMaThietBi.Size = new System.Drawing.Size(250, 22);
-            this.txtMaThietBi.TabIndex = 37;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(17, 28);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 16);
-            this.label8.TabIndex = 38;
-            this.label8.Text = "Mã Thiết Bị";
             // 
             // UCThietBi
             // 

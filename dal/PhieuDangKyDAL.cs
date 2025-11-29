@@ -52,7 +52,7 @@ namespace QL_KTX.DAL
                     PDK.*,
                     SV.HoTen, SV.NgaySinh, 
                     CASE WHEN SV.GioiTinh = 1 THEN N'Nam' ELSE N'Nữ' END AS GioiTinh,
-                    K.TenKhoa, L.TenLop, P.TenPhong, T.TenToa
+                    K.TenKhoa, L.TenLop, P.TenPhong, T.MaToa, T.TenToa
                 FROM 
                 PhieuDangKy AS PDK
                 JOIN SinhVien AS SV ON PDK.MaSinhVien = SV.MaSinhVien

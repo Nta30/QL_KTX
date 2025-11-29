@@ -43,6 +43,8 @@
             this.dgvViPham = new System.Windows.Forms.DataGridView();
             this.cbGioiTinh = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtMaViPham = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
@@ -71,8 +73,6 @@
             this.txtMaSinhVien = new System.Windows.Forms.TextBox();
             this.pbAnh = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtMaViPham = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViPham)).BeginInit();
             this.panel2.SuspendLayout();
@@ -206,6 +206,7 @@
             // 
             // dgvViPham
             // 
+            this.dgvViPham.AllowUserToAddRows = false;
             this.dgvViPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvViPham.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvViPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -258,6 +259,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(728, 705);
             this.panel2.TabIndex = 8;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label17.Location = new System.Drawing.Point(19, 28);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(79, 16);
+            this.label17.TabIndex = 45;
+            this.label17.Text = "Mã Vi Phạm";
+            // 
+            // txtMaViPham
+            // 
+            this.txtMaViPham.Enabled = false;
+            this.txtMaViPham.Location = new System.Drawing.Point(22, 47);
+            this.txtMaViPham.Name = "txtMaViPham";
+            this.txtMaViPham.Size = new System.Drawing.Size(445, 22);
+            this.txtMaViPham.TabIndex = 44;
             // 
             // groupBox2
             // 
@@ -530,24 +549,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Thông Tin Vi Phạm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label17.Location = new System.Drawing.Point(19, 28);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(79, 16);
-            this.label17.TabIndex = 45;
-            this.label17.Text = "Mã Vi Phạm";
-            // 
-            // txtMaViPham
-            // 
-            this.txtMaViPham.Enabled = false;
-            this.txtMaViPham.Location = new System.Drawing.Point(22, 47);
-            this.txtMaViPham.Name = "txtMaViPham";
-            this.txtMaViPham.Size = new System.Drawing.Size(445, 22);
-            this.txtMaViPham.TabIndex = 44;
             // 
             // UCViPham
             // 

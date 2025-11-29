@@ -104,6 +104,12 @@ namespace QL_KTX.BLL
             return traPhongDAL.SuaTraPhong(tp);
         }
 
+        public bool CheckSinhVienDangO(string maSinhVien)
+        {
+            DataTable phieuDkHienTai = phieuDangKyDAL.ChiTietPhieuDangKyDangO(maSinhVien);
+            return phieuDkHienTai.Rows.Count > 0;
+        }
+
         public bool XoaTraPhong(string maPhieu)
         {
             return traPhongDAL.XoaTraPhong(maPhieu);

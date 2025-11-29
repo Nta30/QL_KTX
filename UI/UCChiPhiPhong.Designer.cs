@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnThemExcel = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
@@ -79,9 +80,10 @@
             this.cbLeftToa = new System.Windows.Forms.ComboBox();
             this.dgvDanhSachHoaDon = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtLeftDoanhThu = new System.Windows.Forms.TextBox();
             this.txtLeftThang = new System.Windows.Forms.TextBox();
             this.txtLeftNam = new System.Windows.Forms.TextBox();
-            this.btnThemExcel = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -106,6 +108,16 @@
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chức Năng";
+            // 
+            // btnThemExcel
+            // 
+            this.btnThemExcel.Location = new System.Drawing.Point(222, 31);
+            this.btnThemExcel.Name = "btnThemExcel";
+            this.btnThemExcel.Size = new System.Drawing.Size(88, 36);
+            this.btnThemExcel.TabIndex = 16;
+            this.btnThemExcel.Text = "Thêm DS";
+            this.btnThemExcel.UseVisualStyleBackColor = true;
+            this.btnThemExcel.Click += new System.EventHandler(this.btnThemExcel_Click);
             // 
             // btnSua
             // 
@@ -563,11 +575,13 @@
             // 
             // dgvSinhVienTrongPhong
             // 
+            this.dgvSinhVienTrongPhong.AllowUserToAddRows = false;
             this.dgvSinhVienTrongPhong.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSinhVienTrongPhong.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvSinhVienTrongPhong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSinhVienTrongPhong.Location = new System.Drawing.Point(14, 300);
             this.dgvSinhVienTrongPhong.Name = "dgvSinhVienTrongPhong";
+            this.dgvSinhVienTrongPhong.RowHeadersVisible = false;
             this.dgvSinhVienTrongPhong.RowHeadersWidth = 51;
             this.dgvSinhVienTrongPhong.RowTemplate.Height = 24;
             this.dgvSinhVienTrongPhong.Size = new System.Drawing.Size(341, 237);
@@ -584,6 +598,7 @@
             // 
             // dgvDanhSachHoaDon
             // 
+            this.dgvDanhSachHoaDon.AllowUserToAddRows = false;
             this.dgvDanhSachHoaDon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDanhSachHoaDon.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvDanhSachHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -598,6 +613,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.txtLeftDoanhThu);
             this.panel1.Controls.Add(this.txtLeftThang);
             this.panel1.Controls.Add(this.txtLeftNam);
             this.panel1.Controls.Add(this.label11);
@@ -617,6 +634,24 @@
             this.panel1.Size = new System.Drawing.Size(716, 705);
             this.panel1.TabIndex = 10;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label14.Location = new System.Drawing.Point(321, 119);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(73, 16);
+            this.label14.TabIndex = 41;
+            this.label14.Text = "Doanh Thu";
+            // 
+            // txtLeftDoanhThu
+            // 
+            this.txtLeftDoanhThu.Enabled = false;
+            this.txtLeftDoanhThu.Location = new System.Drawing.Point(320, 138);
+            this.txtLeftDoanhThu.Name = "txtLeftDoanhThu";
+            this.txtLeftDoanhThu.Size = new System.Drawing.Size(188, 22);
+            this.txtLeftDoanhThu.TabIndex = 40;
+            // 
             // txtLeftThang
             // 
             this.txtLeftThang.Location = new System.Drawing.Point(19, 87);
@@ -630,16 +665,6 @@
             this.txtLeftNam.Name = "txtLeftNam";
             this.txtLeftNam.Size = new System.Drawing.Size(188, 22);
             this.txtLeftNam.TabIndex = 39;
-            // 
-            // btnThemExcel
-            // 
-            this.btnThemExcel.Location = new System.Drawing.Point(222, 31);
-            this.btnThemExcel.Name = "btnThemExcel";
-            this.btnThemExcel.Size = new System.Drawing.Size(88, 36);
-            this.btnThemExcel.TabIndex = 16;
-            this.btnThemExcel.Text = "Thêm DS";
-            this.btnThemExcel.UseVisualStyleBackColor = true;
-            this.btnThemExcel.Click += new System.EventHandler(this.btnThemExcel_Click);
             // 
             // openFileDialog
             // 
@@ -726,5 +751,7 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThemExcel;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtLeftDoanhThu;
     }
 }

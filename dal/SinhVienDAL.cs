@@ -52,7 +52,7 @@ namespace QL_KTX.DAL
             return data.ReadData(sql);
         }
 
-        public DataTable TimKiemSinhVien(string maDienSinhVien, string maQue, string maKhoa, string maLop)
+        public DataTable TimKiemSinhVien(string maDienSinhVien, string maQue, string maKhoa, string maLop, string maSinhVien)
         {
             string sql = @"
                 SELECT 
@@ -82,6 +82,10 @@ namespace QL_KTX.DAL
             if (!string.IsNullOrEmpty(maLop))
             {
                 sql += "AND L.MaLop = '" + maLop + "' ";
+            }
+            if (!string.IsNullOrEmpty(maSinhVien))
+            {
+                sql += "AND SV.MaSinhVien LIKE '%" + maSinhVien + "%' ";
             }
 
             return data.ReadData(sql);

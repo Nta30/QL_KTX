@@ -149,6 +149,7 @@
             // 
             // dgvLichSu
             // 
+            this.dgvLichSu.AllowUserToAddRows = false;
             this.dgvLichSu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLichSu.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvLichSu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

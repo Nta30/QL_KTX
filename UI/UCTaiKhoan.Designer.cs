@@ -392,6 +392,7 @@
             // 
             // dgvDSTaiKhoan
             // 
+            this.dgvDSTaiKhoan.AllowUserToAddRows = false;
             this.dgvDSTaiKhoan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDSTaiKhoan.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvDSTaiKhoan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

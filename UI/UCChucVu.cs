@@ -64,7 +64,7 @@ namespace QL_KTX.UI
             btnThem.Enabled = true;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
-            btnLamMoi.Enabled = true;
+            btnLamMoi.Enabled = false;
 
             btnLuu.Enabled = false;
             btnThoat.Enabled = false;

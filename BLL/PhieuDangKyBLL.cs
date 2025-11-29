@@ -30,6 +30,7 @@ namespace QL_KTX.BLL
             {
                 MaPhieuDangKy = row["MaPhieuDangKy"].ToString(),
                 MaSinhVien = row["MaSinhVien"].ToString(),
+                MaToa = row["MaToa"].ToString(),
                 MaPhong = row["MaPhong"].ToString(),
                 ThoiGianDangKy = Convert.ToDateTime(row["ThoiGianDangKy"]),
                 HocKy = row["HocKy"].ToString(),

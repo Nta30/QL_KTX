@@ -1,4 +1,5 @@
 ﻿using QL_KTX.DAL;
+using QL_KTX.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,11 @@ namespace QL_KTX.UI
         {
             //this.BackgroundImage = Image.FromFile(Path.Combine(Application.StartupPath, @"Images\TrangChu\bg_TrangChu.jpg"));
             //this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            lblTenNv.Text = Session.hoTenNhanVien;
+            picHinhAnhNhanVien.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", "NhanVien", Session.hinhAnhNhanVien));
+            
+
             LoadThongKeTongQuat();
             LoadChartDoanhThu();
             LoadChartTyLePhong();

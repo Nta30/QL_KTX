@@ -54,14 +54,10 @@ namespace QL_KTX.UI
         {
             DataTable dt = bll.TimKiem(maLP, tenTB);
             dgvDsThietBi.DataSource = dt;
-
-            if (dgvDsThietBi.Columns.Count > 0)
-            {
-                dgvDsThietBi.Columns["MaThietBi"].HeaderText = "Mã TB";
-                dgvDsThietBi.Columns["TenThietBi"].HeaderText = "Tên Thiết Bị";
-                dgvDsThietBi.Columns["GiaTien"].HeaderText = "Giá Tiền";
-                dgvDsThietBi.RowHeadersVisible = false;
-            }
+            dgvDsThietBi.Columns["MaThietBi"].HeaderText = "Mã TB";
+            dgvDsThietBi.Columns["TenThietBi"].HeaderText = "Tên Thiết Bị";
+            dgvDsThietBi.Columns["GiaTien"].HeaderText = "Giá Tiền";
+            dgvDsThietBi.RowHeadersVisible = false;
 
             TinhTong(dt);
         }
